@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://c3irgmjtsqrn0"]
+
+[ext_resource type="Texture2D" uid="uid://rjh277g41qby" path="res://Player/Samurai_Archer/Arrow.png" id="1_5qhvo"]
+[ext_resource type="Script" path="res://Player/Samurai_Archer/arrow.gd" id="1_pqhkf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uvd44"]
+size = Vector2(60, 12)
+
+[node name="Arrow" type="Area2D"]
+gravity = 0.0
+linear_damp = 33.333
+script = ExtResource("1_pqhkf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(58, 4)
+shape = SubResource("RectangleShape2D_uvd44")
+
+[node name="Arrow" type="Sprite2D" parent="."]
+position = Vector2(55, 3)
+texture = ExtResource("1_5qhvo")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
