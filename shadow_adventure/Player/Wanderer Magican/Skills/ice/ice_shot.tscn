@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://cmhn36685caxb"]
+[gd_scene load_steps=32 format=3 uid="uid://cmhn36685caxb"]
 
 [ext_resource type="Script" path="res://Player/Wanderer Magican/Skills/ice/ice_shot.gd" id="1_mjc7o"]
 [ext_resource type="Texture2D" uid="uid://ca64oxdvi55yl" path="res://Player/Wanderer Magican/Skills/ice/ice1.png" id="2_wc2ai"]
@@ -71,6 +71,63 @@ region = Rect2(0, 0, 128, 128)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("4_lvow5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_x588g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_lhvs6")
+}],
+"loop": true,
+"name": &"Flying",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_wc2ai")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_q4vkg")
+}],
+"loop": false,
+"name": &"Ice-start",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_a5whn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_gm538")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_qh3rb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_a053j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_afsc4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_yeggi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_s26xm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_fq05g")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"Impact",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_pu6cy")
 }, {
 "duration": 1.0,
@@ -120,15 +177,44 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_sctln"]
 radius = 43.1856
 
-[node name="Ice_shot" type="Area2D" groups=["Projectiles"]]
+[sub_resource type="Animation" id="Animation_5j6qg"]
+resource_name = "Flying"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.133333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"Flying", 1.0, false],
+"method": &"play"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_aeitp"]
+_data = {
+"Flying": SubResource("Animation_5j6qg")
+}
+
+[node name="Ice_shot" type="Area2D" groups=["Projectile"]]
 script = ExtResource("1_mjc7o")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(288, 124)
 sprite_frames = SubResource("SpriteFrames_4l6sx")
-animation = &"ice"
-frame_progress = 0.0230039
+animation = &"Impact"
+frame = 8
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(304, 128)
 shape = SubResource("CircleShape2D_sctln")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_aeitp")
+}
+autoplay = "Flying"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
