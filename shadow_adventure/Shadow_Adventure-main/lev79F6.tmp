@@ -1,0 +1,34 @@
+[gd_scene load_steps=7 format=3 uid="uid://3un0n64s0sib"]
+
+[ext_resource type="PackedScene" uid="uid://ct0t1nc8rnqn4" path="res://Player/Samurai_Archer/archer.tscn" id="1_4rjts"]
+[ext_resource type="Texture2D" uid="uid://dgp2kyt2vpfhb" path="res://icon.svg" id="2_kp0ur"]
+[ext_resource type="PackedScene" uid="uid://7agne1pfbb3c" path="res://Player/ui.tscn" id="2_nnvn5"]
+[ext_resource type="PackedScene" uid="uid://byy0rnchgmlk0" path="res://Enemy/Orc1/orc_1.tscn" id="4_2ujna"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ysiti"]
+bounce = 30.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f6en3"]
+size = Vector2(968, 86)
+
+[node name="Level 1" type="Node2D"]
+
+[node name="Archer" parent="." instance=ExtResource("1_4rjts")]
+position = Vector2(67, 161)
+
+[node name="RigidBody2D" type="StaticBody2D" parent="."]
+physics_material_override = SubResource("PhysicsMaterial_ysiti")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+position = Vector2(486, 357)
+shape = SubResource("RectangleShape2D_f6en3")
+
+[node name="Icon" type="Sprite2D" parent="RigidBody2D"]
+position = Vector2(482.493, 353.427)
+scale = Vector2(7.50792, 0.647299)
+texture = ExtResource("2_kp0ur")
+
+[node name="UI" parent="." instance=ExtResource("2_nnvn5")]
+
+[node name="Orc1" parent="." instance=ExtResource("4_2ujna")]
+position = Vector2(750, 216)

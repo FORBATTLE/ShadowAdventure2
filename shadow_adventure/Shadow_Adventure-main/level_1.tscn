@@ -1,14 +1,18 @@
-[gd_scene load_steps=6 format=3 uid="uid://3un0n64s0sib"]
+[gd_scene load_steps=8 format=3 uid="uid://3un0n64s0sib"]
 
 [ext_resource type="PackedScene" uid="uid://ct0t1nc8rnqn4" path="res://Player/Samurai_Archer/archer.tscn" id="1_4rjts"]
 [ext_resource type="Texture2D" uid="uid://dgp2kyt2vpfhb" path="res://icon.svg" id="2_kp0ur"]
 [ext_resource type="PackedScene" uid="uid://7agne1pfbb3c" path="res://Player/ui.tscn" id="2_nnvn5"]
+[ext_resource type="PackedScene" uid="uid://byy0rnchgmlk0" path="res://Enemy/Orc1/orc_1.tscn" id="4_2ujna"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ysiti"]
 bounce = 30.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f6en3"]
-size = Vector2(968, 86)
+size = Vector2(974, 86)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m2kvf"]
+size = Vector2(29, 319)
 
 [node name="Level 1" type="Node2D"]
 
@@ -28,3 +32,18 @@ scale = Vector2(7.50792, 0.647299)
 texture = ExtResource("2_kp0ur")
 
 [node name="UI" parent="." instance=ExtResource("2_nnvn5")]
+
+[node name="Orc1" parent="." instance=ExtResource("4_2ujna")]
+position = Vector2(729, 288)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-8, 163)
+shape = SubResource("RectangleShape2D_m2kvf")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="StaticBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D/StaticBody2D"]
+position = Vector2(973, 159)
+shape = SubResource("RectangleShape2D_m2kvf")

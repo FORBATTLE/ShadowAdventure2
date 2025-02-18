@@ -6,12 +6,12 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uvd44"]
 size = Vector2(60, 12)
 
-[node name="Arrow" type="Area2D"]
+[node name="Arrow" type="Area2D" groups=["Player"]]
 gravity = 0.0
 linear_damp = 33.333
 script = ExtResource("1_pqhkf")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["Player"]]
 position = Vector2(58, 4)
 shape = SubResource("RectangleShape2D_uvd44")
 

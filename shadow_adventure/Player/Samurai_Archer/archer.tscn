@@ -287,9 +287,9 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_2k3lr")
 }],
-"loop": true,
+"loop": false,
 "name": &"ArcherAttack",
-"speed": 30.0
+"speed": 120.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -764,8 +764,9 @@ shape = SubResource("RectangleShape2D_a2368")
 
 [node name="Regular Archer" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_jb2um")
-animation = &"ArcherJump"
-frame_progress = 0.940867
+animation = &"ArcherAttack"
+frame = 13
+frame_progress = 1.0
 
 [node name="Shadow Archer" type="AnimatedSprite2D" parent="."]
 visible = false
@@ -788,7 +789,7 @@ libraries = {
 "": SubResource("AnimationLibrary_ie6ir")
 }
 
-[node name="shoot_timer" type="Timer" parent="."]
+[node name="shoot_timer" type="Timer" parent="." groups=["Player"]]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(2, 0)

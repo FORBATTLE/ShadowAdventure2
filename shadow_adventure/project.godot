@@ -18,3 +18,8 @@ config/icon="res://icon.svg"
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/imjp94.yafsm/plugin.cfg")
+
+[global_group]
+
+Player=""
+Enemies="Any mob"
