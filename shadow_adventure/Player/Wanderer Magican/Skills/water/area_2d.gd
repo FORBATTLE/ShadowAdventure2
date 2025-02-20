@@ -1,5 +1,5 @@
 extends Area2D
-var speed = 300
+var speed = 400
 var speed_mod = 1.5
 var direction = Vector2.ONE
 
@@ -19,4 +19,5 @@ func _on_body_entered(body: Node2D) -> void:
 	if not body.is_in_group("Player"):
 		$AnimatedSprite2D.play("Impact")
 		speed = 0
-		pass # Replace with function body.
+	
+	pass # Replace with function body.

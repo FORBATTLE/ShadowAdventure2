@@ -1,4 +1,4 @@
-[gd_scene load_steps=95 format=3 uid="uid://cv4vn1pnprwam"]
+[gd_scene load_steps=86 format=3 uid="uid://cv4vn1pnprwam"]
 
 [ext_resource type="Texture2D" uid="uid://cfe75ey5qxt6h" path="res://Player/Wanderer Magican/Attack_1.png" id="1_vufiu"]
 [ext_resource type="Texture2D" uid="uid://bpqxxkocf2ln8" path="res://Player/Wanderer Magican/Attack_2.png" id="2_7fc2c"]
@@ -17,7 +17,7 @@ script/source = "extends CharacterBody2D
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 @export var ICE_SHOT = preload(\"res://Player/Wanderer Magican/Skills/ice/ice_shot.tscn\")
-
+@export var Water_Gun = preload(\"res://Player/Wanderer Magican/Skills/water/water_gun.tscn\")
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
@@ -57,6 +57,17 @@ func spell_ice():
 		Ice_projectile.global_position = $\"Target point\".global_position
 		Ice_projectile.rotation = rotation
 		get_tree().get_root().add_child(Ice_projectile)
+
+
+func spell_water():
+	if Input.is_action_just_pressed(\"Spell(fire)\"):
+		var water_projectile = Water_Gun.instantiate()
+		var Water_vec = $\"Target point\".global_position - global_position
+		Water_vec = Water_vec.normalized()
+		water_projectile.direction = Water_vec
+		water_projectile.global_position = $\"Target point\".global_position
+		water_projectile.rotation = rotation
+		get_tree().get_root().add_child(water_projectile)
 "
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2ght7"]
@@ -86,42 +97,6 @@ region = Rect2(640, 28, 128, 100)
 [sub_resource type="AtlasTexture" id="AtlasTexture_y1615"]
 atlas = ExtResource("1_vufiu")
 region = Rect2(768, 28, 128, 100)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2xlj0"]
-atlas = ExtResource("2_7fc2c")
-region = Rect2(0, 52, 128, 76)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_cvwyc"]
-atlas = ExtResource("2_7fc2c")
-region = Rect2(128, 52, 128, 76)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_04m7y"]
-atlas = ExtResource("2_7fc2c")
-region = Rect2(256, 52, 128, 76)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_e8n88"]
-atlas = ExtResource("2_7fc2c")
-region = Rect2(384, 52, 128, 76)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1hhco"]
-atlas = ExtResource("2_7fc2c")
-region = Rect2(512, 52, 128, 76)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_il0tv"]
-atlas = ExtResource("2_7fc2c")
-region = Rect2(640, 52, 128, 76)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_dqqxg"]
-atlas = ExtResource("2_7fc2c")
-region = Rect2(768, 52, 128, 76)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_sjlb3"]
-atlas = ExtResource("2_7fc2c")
-region = Rect2(896, 52, 128, 76)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_aes28"]
-atlas = ExtResource("2_7fc2c")
-region = Rect2(1024, 52, 128, 76)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xshu5"]
 atlas = ExtResource("2_7fc2c")
@@ -405,33 +380,6 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_2xlj0")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_cvwyc")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_04m7y")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_e8n88")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_1hhco")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_il0tv")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_dqqxg")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_sjlb3")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_aes28")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_xshu5")
 }, {
 "duration": 1.0,
@@ -661,7 +609,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8bgap"]
-radius = 96.0052
+radius = 39.4089
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_w8ugk"]
 radius = 125.196
@@ -689,19 +637,19 @@ _data = {
 }
 
 [node name="Jordan" type="CharacterBody2D" groups=["Player"]]
+scale = Vector2(2.563, 2.563)
 script = SubResource("GDScript_q4etk")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-position = Vector2(-3, 4)
+position = Vector2(1.1705, 1.56067)
 sprite_frames = SubResource("SpriteFrames_mnpmp")
 animation = &"attack_2"
-frame = 16
+frame = 7
 frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2(284, 131)
+position = Vector2(-12.4854, 12.8755)
 shape = SubResource("CircleShape2D_8bgap")
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -717,4 +665,4 @@ libraries = {
 }
 
 [node name="Target point" type="Marker2D" parent="."]
-position = Vector2(52, -1)
+position = Vector2(52.6726, 0.780335)
