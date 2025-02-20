@@ -2,8 +2,9 @@ extends CharacterBody2D
 @export var speed: float = 100.0  # Movement speed
 var direction: int = 1  # 1 for right, -1 for left
 @export var health: int = 3
-
-
+var is_dying: bool = false
+var is_playing_damage_animation: bool = false  # To track if damage animation is active
+var current_animation: String = "O1Run"  # Tracks the current animation
 
 func _ready() -> void:
 	pass # Replace with function body.
@@ -11,20 +12,25 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
+	if is_dying:
+		return
 	# Calculate velocity based on the direction
 	velocity.x = direction * speed
 	# Move using the new Godot 4 method
 	var collision_info = move_and_collide(velocity * delta)
-
+	
 	# Optional: Detect collision and change direction if colliding with a wall
 	if collision_info:
 		change_direction()
 	#if !$RayCast2D.is_colliding():
 		#change_direction()
+	if is_playing_damage_animation:
+		return
+	
 	if direction != 0:
-		$AnimationPlayer.play("O1Run")
+		play_animation("O1Run")
 	else:
-		$AnimationPlayer.play("O1Idle")
+		play_animation("O1Idle")
 
 func change_direction() -> void:
 	direction *= -1  # Reverse direction
@@ -32,19 +38,43 @@ func change_direction() -> void:
 
 func take_damage(amount: int) -> void:
 	health -= amount
-	if health <= 0:
+	if health > 0:
+		if $AnimationPlayer.has_animation("O1 Damaged"):
+			is_playing_damage_animation = true
+			current_animation = "O1Run"
+			$AnimationPlayer.stop()  # Stop any current animation
+			$AnimationPlayer.play("O1 Damaged")
+			print("Taking damage!")
+	else:
 		die()
-func die() -> void:
-	queue_free()  # Remove the enemy from the game
 	
+func die() -> void:
+	if is_dying:
+		return  # Prevent multiple death triggers
+
+	is_dying = true
+	$AnimationPlayer.play("O1 Die")
+
+	# Queue free after death animation finishes
+	$AnimationPlayer.animation_finished.connect(self._on_death_animation_finished)
+	
+func _on_death_animation_finished(name: String) -> void:
+	if name == "O1 Die":
+		queue_free()
+	
+func _on_damage_animation_finished(name: String) -> void:
+	if name == "O1 Damaged":
+		is_playing_damage_animation = false
+		play_animation(current_animation)  # Resume the previous animation
+	
+func play_animation(animation_name: String) -> void:
+	if !$AnimationPlayer.is_playing() or $AnimationPlayer.current_animation != animation_name:
+		$AnimationPlayer.play(animation_name)
+		
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player"):
 		body.take_damage(1)  # Call the player’s damage function
 	
-	
-	
-	
-	
-	
-	
-	
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	play_animation("O1Run")
+	pass # Replace with function body.
