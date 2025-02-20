@@ -1,21 +1,18 @@
-[gd_scene load_steps=89 format=3 uid="uid://cv4vn1pnprwam"]
+[gd_scene load_steps=86 format=3 uid="uid://d3b1awfytkshg"]
 
-[ext_resource type="Texture2D" uid="uid://cfe75ey5qxt6h" path="res://Player/Wanderer Magican/Attack_1.png" id="1_vufiu"]
-[ext_resource type="Texture2D" uid="uid://bpqxxkocf2ln8" path="res://Player/Wanderer Magican/Attack_2.png" id="2_7fc2c"]
-[ext_resource type="Texture2D" uid="uid://d4mw0peu8eybl" path="res://Player/Wanderer Magican/Hurt.png" id="3_4mrjg"]
-[ext_resource type="Texture2D" uid="uid://c53fkb3uhu604" path="res://Player/Wanderer Magican/Dead.png" id="4_n1cpc"]
-[ext_resource type="Texture2D" uid="uid://bljkwoyygt2xl" path="res://Player/Wanderer Magican/Idle.png" id="5_x8wae"]
-[ext_resource type="Texture2D" uid="uid://bluu1660amqfg" path="res://Player/Wanderer Magican/Jump.png" id="6_yx50r"]
-[ext_resource type="Texture2D" uid="uid://t5cu6ok6fbhl" path="res://Player/Wanderer Magican/Run.png" id="7_7mxjw"]
-[ext_resource type="Texture2D" uid="uid://c06jy1ikxyfej" path="res://Player/Wanderer Magican/Magic_sphere.png" id="8_wfd62"]
-[ext_resource type="Texture2D" uid="uid://b1qub2fne3ot2" path="res://Player/Wanderer Magican/Walk.png" id="9_4bq5h"]
+[ext_resource type="Texture2D" path="res://Player/Wanderer Magican/Attack_1.png" id="1_vufiu"]
+[ext_resource type="Texture2D" path="res://Player/Wanderer Magican/Attack_2.png" id="2_7fc2c"]
+[ext_resource type="Texture2D" path="res://Player/Wanderer Magican/Hurt.png" id="3_4mrjg"]
+[ext_resource type="Texture2D" path="res://Player/Wanderer Magican/Dead.png" id="4_n1cpc"]
+[ext_resource type="Texture2D" path="res://Player/Wanderer Magican/Idle.png" id="5_x8wae"]
+[ext_resource type="Texture2D" path="res://Player/Wanderer Magican/Jump.png" id="6_yx50r"]
+[ext_resource type="Texture2D" path="res://Player/Wanderer Magican/Run.png" id="7_7mxjw"]
+[ext_resource type="Texture2D" path="res://Player/Wanderer Magican/Magic_sphere.png" id="8_wfd62"]
+[ext_resource type="Texture2D" path="res://Player/Wanderer Magican/Walk.png" id="9_4bq5h"]
 
 [sub_resource type="GDScript" id="GDScript_q4etk"]
 script/source = "extends CharacterBody2D
-var facing_direction = 1  # 1 = Right, -1 = Left
-var is_moving = false
-var is_shooting = false
-var can_shoot = true
+
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
@@ -23,47 +20,32 @@ const JUMP_VELOCITY = -400.0
 @export var Water_Gun = preload(\"res://Player/Wanderer Magican/Skills/water/water_gun.tscn\")
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
-	# Add the gravity.
-	
-	
-	var move_input = Input.get_action_strength(\"ui_right\") - Input.get_action_strength(\"ui_left\")
-	
-	if move_input != 0:
-		facing_direction = 1 if move_input > 0 else -1
-		is_moving = true
-	else:
-		is_moving = false
-	
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
 	# Handle jump.
 	if Input.is_action_just_pressed(\"ui_up\") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
-		animation_player.play(\"Jump\")
-	
+
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction := Input.get_axis(\"ui_left\", \"ui_right\")
-	$AnimatedSprite2D.flip_h = (facing_direction == -1)
-	
 	if direction:
 		velocity.x = direction * SPEED
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
-	if not is_on_floor():
-		$AnimationPlayer.play(\"Jump\")
-	
-	elif is_moving and not is_shooting:
-		$AnimationPlayer.play(\"Run\")
-	elif not is_moving and not is_shooting:
-		$AnimationPlayer.play(\"Idle\")
-	
-	if Input.is_action_just_pressed(\"ui_accept\") and can_shoot:
-		pass
 	
 	spell_ice()
 	move_and_slide()
+
+func shoot():
+	if animation_player.is_playing() and Input.is_action_just_pressed(\"Spell(fire)\"):
+		animation_player.stop()
+	elif !animation_player.is_playing() and Input.is_action_just_pressed(\"Spell(fire)\"):
+		animation_player.play(\"Firing_Spell\")
+		
+		pass
+
 
 
 func spell_ice():
@@ -75,7 +57,6 @@ func spell_ice():
 		Ice_projectile.global_position = $\"Target point\".global_position
 		Ice_projectile.rotation = rotation
 		get_tree().get_root().add_child(Ice_projectile)
-		play_shoot_animation()
 
 
 func spell_water():
@@ -87,15 +68,6 @@ func spell_water():
 		water_projectile.global_position = $\"Target point\".global_position
 		water_projectile.rotation = rotation
 		get_tree().get_root().add_child(water_projectile)
-		
-
-func play_shoot_animation():
-	is_shooting = true
-	$AnimationPlayer.play(\"Firing_Spell\")
-	
-
-func _reset_shoot():
-	can_shoot = true
 "
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2ght7"]
@@ -659,76 +631,25 @@ tracks/0/keys = {
 }]
 }
 
-[sub_resource type="Animation" id="Animation_ffejb"]
-resource_name = "Jump"
-tracks/0/type = "method"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [&"jump", 1.0, false],
-"method": &"play"
-}]
-}
-
-[sub_resource type="Animation" id="Animation_4aktx"]
-resource_name = "Idle"
-tracks/0/type = "method"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [&"idle", 1.0, false],
-"method": &"play"
-}]
-}
-
-[sub_resource type="Animation" id="Animation_icqfx"]
-resource_name = "Run"
-tracks/0/type = "method"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [&"run", 1.0, false],
-"method": &"play"
-}]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fjkui"]
 _data = {
-"Firing_Spell": SubResource("Animation_s47jc"),
-"Idle": SubResource("Animation_4aktx"),
-"Jump": SubResource("Animation_ffejb"),
-"Run": SubResource("Animation_icqfx")
+"Firing_Spell": SubResource("Animation_s47jc")
 }
 
 [node name="Jordan" type="CharacterBody2D" groups=["Player"]]
+scale = Vector2(2.563, 2.563)
 script = SubResource("GDScript_q4etk")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-position = Vector2(0, -0.390168)
+position = Vector2(0, 3.90168)
 sprite_frames = SubResource("SpriteFrames_mnpmp")
-animation = &"run"
+animation = &"attack_2"
+frame = 7
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-11, 35)
+position = Vector2(-17.5575, 12.0952)
 shape = SubResource("CircleShape2D_8bgap")
 
 [node name="Area2D" type="Area2D" parent="."]

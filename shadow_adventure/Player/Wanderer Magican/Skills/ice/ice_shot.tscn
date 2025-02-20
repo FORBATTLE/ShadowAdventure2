@@ -1,19 +1,19 @@
-[gd_scene load_steps=32 format=3 uid="uid://cmhn36685caxb"]
+[gd_scene load_steps=32 format=3 uid="uid://bxs1jtfen1j8l"]
 
 [ext_resource type="Script" path="res://Player/Wanderer Magican/Skills/ice/ice_shot.gd" id="1_mjc7o"]
-[ext_resource type="Texture2D" uid="uid://ca64oxdvi55yl" path="res://Player/Wanderer Magican/Skills/ice/ice1.png" id="2_wc2ai"]
-[ext_resource type="Texture2D" uid="uid://bcrsmu526x2k3" path="res://Player/Wanderer Magican/Skills/ice/ice2.png" id="3_q4vkg"]
-[ext_resource type="Texture2D" uid="uid://kjxgcf42isd6" path="res://Player/Wanderer Magican/Skills/ice/ice3.png" id="4_lvow5"]
-[ext_resource type="Texture2D" uid="uid://kj0rrmnw4603" path="res://Player/Wanderer Magican/Skills/ice/ice4.png" id="5_x588g"]
-[ext_resource type="Texture2D" uid="uid://btk8up341j340" path="res://Player/Wanderer Magican/Skills/ice/ice5.png" id="6_lhvs6"]
-[ext_resource type="Texture2D" uid="uid://devyv3v0u1nj0" path="res://Player/Wanderer Magican/Skills/ice/ice6.png" id="7_a5whn"]
-[ext_resource type="Texture2D" uid="uid://drkfyok64ltxl" path="res://Player/Wanderer Magican/Skills/ice/ice7.png" id="8_gm538"]
-[ext_resource type="Texture2D" uid="uid://s4jt4q7oebiw" path="res://Player/Wanderer Magican/Skills/ice/ice8.png" id="9_qh3rb"]
-[ext_resource type="Texture2D" uid="uid://df0pdoks8e78f" path="res://Player/Wanderer Magican/Skills/ice/ice9.png" id="10_a053j"]
-[ext_resource type="Texture2D" uid="uid://mcbmd6kkn7yj" path="res://Player/Wanderer Magican/Skills/ice/ice10.png" id="11_afsc4"]
-[ext_resource type="Texture2D" uid="uid://c253b3acoi5q8" path="res://Player/Wanderer Magican/Skills/ice/ice11.png" id="12_yeggi"]
-[ext_resource type="Texture2D" uid="uid://cwtjy4iyqydnk" path="res://Player/Wanderer Magican/Skills/ice/ice12.png" id="13_s26xm"]
-[ext_resource type="Texture2D" uid="uid://bafa1hskpae6e" path="res://Player/Wanderer Magican/Skills/ice/ice13.png" id="14_fq05g"]
+[ext_resource type="Texture2D" path="res://Player/Wanderer Magican/Skills/ice/ice1.png" id="2_wc2ai"]
+[ext_resource type="Texture2D" path="res://Player/Wanderer Magican/Skills/ice/ice2.png" id="3_q4vkg"]
+[ext_resource type="Texture2D" path="res://Player/Wanderer Magican/Skills/ice/ice3.png" id="4_lvow5"]
+[ext_resource type="Texture2D" path="res://Player/Wanderer Magican/Skills/ice/ice4.png" id="5_x588g"]
+[ext_resource type="Texture2D" path="res://Player/Wanderer Magican/Skills/ice/ice5.png" id="6_lhvs6"]
+[ext_resource type="Texture2D" path="res://Player/Wanderer Magican/Skills/ice/ice6.png" id="7_a5whn"]
+[ext_resource type="Texture2D" path="res://Player/Wanderer Magican/Skills/ice/ice7.png" id="8_gm538"]
+[ext_resource type="Texture2D" path="res://Player/Wanderer Magican/Skills/ice/ice8.png" id="9_qh3rb"]
+[ext_resource type="Texture2D" path="res://Player/Wanderer Magican/Skills/ice/ice9.png" id="10_a053j"]
+[ext_resource type="Texture2D" path="res://Player/Wanderer Magican/Skills/ice/ice10.png" id="11_afsc4"]
+[ext_resource type="Texture2D" path="res://Player/Wanderer Magican/Skills/ice/ice11.png" id="12_yeggi"]
+[ext_resource type="Texture2D" path="res://Player/Wanderer Magican/Skills/ice/ice12.png" id="13_s26xm"]
+[ext_resource type="Texture2D" path="res://Player/Wanderer Magican/Skills/ice/ice13.png" id="14_fq05g"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pu6cy"]
 atlas = ExtResource("2_wc2ai")
@@ -209,7 +209,6 @@ frame = 8
 frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(15, 0)
 shape = SubResource("CircleShape2D_sctln")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

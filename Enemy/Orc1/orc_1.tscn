@@ -93,23 +93,6 @@ size = Vector2(19.5365, 29.06)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k5jrq"]
 size = Vector2(20, 39)
 
-[sub_resource type="Animation" id="Animation_jg2in"]
-resource_name = "O1Run"
-tracks/0/type = "method"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [&"Orc1 Run", 1.0, false],
-"method": &"play"
-}]
-}
-
 [sub_resource type="Animation" id="Animation_4n7el"]
 resource_name = "O1Idle"
 tracks/0/type = "method"
@@ -123,6 +106,23 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [&"Orc1 Idle", 1.0, false],
+"method": &"play"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_jg2in"]
+resource_name = "O1Run"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"Orc1 Run", 1.0, false],
 "method": &"play"
 }]
 }
@@ -144,7 +144,6 @@ frame_progress = 0.0685613
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.23825, -4.52999)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_8vlwq")
 
 [node name="Area2D" type="Area2D" parent="."]
