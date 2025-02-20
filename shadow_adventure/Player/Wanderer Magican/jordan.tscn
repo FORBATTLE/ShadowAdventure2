@@ -1,4 +1,4 @@
-[gd_scene load_steps=123 format=3 uid="uid://cv4vn1pnprwam"]
+[gd_scene load_steps=95 format=3 uid="uid://cv4vn1pnprwam"]
 
 [ext_resource type="Texture2D" uid="uid://cfe75ey5qxt6h" path="res://Player/Wanderer Magican/Attack_1.png" id="1_vufiu"]
 [ext_resource type="Texture2D" uid="uid://bpqxxkocf2ln8" path="res://Player/Wanderer Magican/Attack_2.png" id="2_7fc2c"]
@@ -9,17 +9,11 @@
 [ext_resource type="Texture2D" uid="uid://t5cu6ok6fbhl" path="res://Player/Wanderer Magican/Run.png" id="7_7mxjw"]
 [ext_resource type="Texture2D" uid="uid://c06jy1ikxyfej" path="res://Player/Wanderer Magican/Magic_sphere.png" id="8_wfd62"]
 [ext_resource type="Texture2D" uid="uid://b1qub2fne3ot2" path="res://Player/Wanderer Magican/Walk.png" id="9_4bq5h"]
-[ext_resource type="Script" path="res://addons/imjp94.yafsm/src/StateMachinePlayer.gd" id="10_vofmt"]
-[ext_resource type="Script" path="res://addons/imjp94.yafsm/src/states/StateMachine.gd" id="11_le0rc"]
-[ext_resource type="Script" path="res://addons/imjp94.yafsm/src/states/State.gd" id="12_45yas"]
-[ext_resource type="Script" path="res://addons/imjp94.yafsm/src/transitions/Transition.gd" id="13_jynpr"]
-[ext_resource type="Script" path="res://addons/imjp94.yafsm/src/conditions/IntegerCondition.gd" id="14_ci3pf"]
-[ext_resource type="Script" path="res://addons/imjp94.yafsm/src/conditions/Condition.gd" id="15_vd38v"]
 
 [sub_resource type="GDScript" id="GDScript_q4etk"]
 script/source = "extends CharacterBody2D
 
-
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 @export var ICE_SHOT = preload(\"res://Player/Wanderer Magican/Skills/ice/ice_shot.tscn\")
@@ -40,83 +34,126 @@ func _physics_process(delta: float) -> void:
 		velocity.x = direction * SPEED
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
-
+	
+	spell_ice()
 	move_and_slide()
 
 func shoot():
+	if animation_player.is_playing() and Input.is_action_just_pressed(\"Spell(fire)\"):
+		animation_player.stop()
+	elif !animation_player.is_playing() and Input.is_action_just_pressed(\"Spell(fire)\"):
+		animation_player.play(\"Firing_Spell\")
+		
+		pass
+
+
+
+func spell_ice():
 	if Input.is_action_just_pressed(\"Spell(fire)\"):
-		var new_projectile = ICE_SHOT.instantiate()
-		var projectile_vec = $\"Target point\".global_position - global_position
-		projectile_vec = projectile_vec.normalized()
-		new_projectile.direction = projectile_vec
-		new_projectile.global_position = $\"Target point\".global_position
-		new_projectile.rotation = rotation
-		get_tree().get_root().add_child(new_projectile)
+		var Ice_projectile = ICE_SHOT.instantiate()
+		var Ice_vec = $\"Target point\".global_position - global_position
+		Ice_vec = Ice_vec.normalized()
+		Ice_projectile.direction = Ice_vec
+		Ice_projectile.global_position = $\"Target point\".global_position
+		Ice_projectile.rotation = rotation
+		get_tree().get_root().add_child(Ice_projectile)
 "
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_wq27l"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ght7"]
 atlas = ExtResource("1_vufiu")
-region = Rect2(0, 0, 128, 128)
+region = Rect2(0, 28, 128, 100)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_2yhtr"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_lf7lw"]
 atlas = ExtResource("1_vufiu")
-region = Rect2(128, 0, 128, 128)
+region = Rect2(128, 28, 128, 100)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_00p3u"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_bh6mu"]
 atlas = ExtResource("1_vufiu")
-region = Rect2(256, 0, 128, 128)
+region = Rect2(256, 28, 128, 100)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_1uimv"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_i7twi"]
 atlas = ExtResource("1_vufiu")
-region = Rect2(384, 0, 128, 128)
+region = Rect2(384, 28, 128, 100)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_dq835"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_upd1n"]
 atlas = ExtResource("1_vufiu")
-region = Rect2(512, 0, 128, 128)
+region = Rect2(512, 28, 128, 100)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_7t2q5"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_21yph"]
 atlas = ExtResource("1_vufiu")
-region = Rect2(640, 0, 128, 128)
+region = Rect2(640, 28, 128, 100)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_67d5c"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_y1615"]
 atlas = ExtResource("1_vufiu")
-region = Rect2(768, 0, 128, 128)
+region = Rect2(768, 28, 128, 100)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_bighj"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_2xlj0"]
 atlas = ExtResource("2_7fc2c")
-region = Rect2(0, 0, 128, 128)
+region = Rect2(0, 52, 128, 76)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_0tuvh"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_cvwyc"]
 atlas = ExtResource("2_7fc2c")
-region = Rect2(128, 0, 128, 128)
+region = Rect2(128, 52, 128, 76)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_k5ji0"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_04m7y"]
 atlas = ExtResource("2_7fc2c")
-region = Rect2(256, 0, 128, 128)
+region = Rect2(256, 52, 128, 76)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_dh358"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_e8n88"]
 atlas = ExtResource("2_7fc2c")
-region = Rect2(384, 0, 128, 128)
+region = Rect2(384, 52, 128, 76)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_piqq6"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_1hhco"]
 atlas = ExtResource("2_7fc2c")
-region = Rect2(512, 0, 128, 128)
+region = Rect2(512, 52, 128, 76)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ubduh"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_il0tv"]
 atlas = ExtResource("2_7fc2c")
-region = Rect2(640, 0, 128, 128)
+region = Rect2(640, 52, 128, 76)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_f6no7"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_dqqxg"]
 atlas = ExtResource("2_7fc2c")
-region = Rect2(768, 0, 128, 128)
+region = Rect2(768, 52, 128, 76)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_va02q"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_sjlb3"]
 atlas = ExtResource("2_7fc2c")
-region = Rect2(896, 0, 128, 128)
+region = Rect2(896, 52, 128, 76)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_y1fvk"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_aes28"]
 atlas = ExtResource("2_7fc2c")
-region = Rect2(1024, 0, 128, 128)
+region = Rect2(1024, 52, 128, 76)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xshu5"]
+atlas = ExtResource("2_7fc2c")
+region = Rect2(5, 48, 128, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_veufc"]
+atlas = ExtResource("2_7fc2c")
+region = Rect2(133, 48, 128, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_02r4e"]
+atlas = ExtResource("2_7fc2c")
+region = Rect2(261, 48, 128, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yfeyi"]
+atlas = ExtResource("2_7fc2c")
+region = Rect2(389, 48, 128, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_keq5a"]
+atlas = ExtResource("2_7fc2c")
+region = Rect2(517, 48, 128, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t36vn"]
+atlas = ExtResource("2_7fc2c")
+region = Rect2(645, 48, 128, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4wd4f"]
+atlas = ExtResource("2_7fc2c")
+region = Rect2(773, 48, 128, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_loy6k"]
+atlas = ExtResource("2_7fc2c")
+region = Rect2(901, 48, 128, 80)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l80hu"]
 atlas = ExtResource("3_4mrjg")
@@ -342,59 +379,83 @@ region = Rect2(768, 0, 128, 128)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_wq27l")
+"texture": SubResource("AtlasTexture_2ght7")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_2yhtr")
+"texture": SubResource("AtlasTexture_lf7lw")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_00p3u")
+"texture": SubResource("AtlasTexture_bh6mu")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_1uimv")
+"texture": SubResource("AtlasTexture_i7twi")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_dq835")
+"texture": SubResource("AtlasTexture_upd1n")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_7t2q5")
+"texture": SubResource("AtlasTexture_21yph")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_67d5c")
+"texture": SubResource("AtlasTexture_y1615")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack_1",
 "speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_bighj")
+"texture": SubResource("AtlasTexture_2xlj0")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_0tuvh")
+"texture": SubResource("AtlasTexture_cvwyc")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_k5ji0")
+"texture": SubResource("AtlasTexture_04m7y")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_dh358")
+"texture": SubResource("AtlasTexture_e8n88")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_piqq6")
+"texture": SubResource("AtlasTexture_1hhco")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ubduh")
+"texture": SubResource("AtlasTexture_il0tv")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_f6no7")
+"texture": SubResource("AtlasTexture_dqqxg")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_va02q")
+"texture": SubResource("AtlasTexture_sjlb3")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_y1fvk")
+"texture": SubResource("AtlasTexture_aes28")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xshu5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_veufc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_02r4e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yfeyi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_keq5a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t36vn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4wd4f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_loy6k")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack_2",
 "speed": 8.0
 }, {
@@ -599,238 +660,6 @@ animations = [{
 "speed": 7.0
 }]
 
-[sub_resource type="Resource" id="Resource_c03cy"]
-script = ExtResource("12_45yas")
-name = "Death"
-metadata/graph_offset = Vector2(566, 182)
-
-[sub_resource type="Resource" id="Resource_n1tji"]
-script = ExtResource("12_45yas")
-name = "Entry"
-metadata/graph_offset = Vector2(366, 462)
-
-[sub_resource type="Resource" id="Resource_25u6w"]
-script = ExtResource("12_45yas")
-name = "Hurt"
-metadata/graph_offset = Vector2(366, 182)
-
-[sub_resource type="Resource" id="Resource_f0kt6"]
-script = ExtResource("12_45yas")
-name = "Idle"
-metadata/graph_offset = Vector2(366, 382)
-
-[sub_resource type="Resource" id="Resource_gjtci"]
-script = ExtResource("12_45yas")
-name = "Invul"
-metadata/graph_offset = Vector2(566, 382)
-
-[sub_resource type="Resource" id="Resource_mfxim"]
-script = ExtResource("12_45yas")
-name = "Run"
-metadata/graph_offset = Vector2(166, 182)
-
-[sub_resource type="Resource" id="Resource_h1bpw"]
-script = ExtResource("12_45yas")
-name = "Walk"
-metadata/graph_offset = Vector2(166, 382)
-
-[sub_resource type="Resource" id="Resource_ssq2n"]
-script = ExtResource("13_jynpr")
-from = "Entry"
-to = "Idle"
-conditions = {}
-priority = 0
-
-[sub_resource type="Resource" id="Resource_nb1sl"]
-script = ExtResource("14_ci3pf")
-value = 0
-comparation = 5
-name = "Health"
-
-[sub_resource type="Resource" id="Resource_2obbp"]
-script = ExtResource("13_jynpr")
-from = "Hurt"
-to = "Death"
-conditions = {
-"Health": SubResource("Resource_nb1sl")
-}
-priority = 0
-
-[sub_resource type="Resource" id="Resource_hp6o7"]
-script = ExtResource("14_ci3pf")
-value = 0
-comparation = 2
-name = "Health"
-
-[sub_resource type="Resource" id="Resource_y1hch"]
-script = ExtResource("13_jynpr")
-from = "Hurt"
-to = "Invul"
-conditions = {
-"Health": SubResource("Resource_hp6o7")
-}
-priority = 0
-
-[sub_resource type="Resource" id="Resource_e1joi"]
-script = ExtResource("15_vd38v")
-name = "Damaged"
-
-[sub_resource type="Resource" id="Resource_mr2hx"]
-script = ExtResource("13_jynpr")
-from = "Idle"
-to = "Hurt"
-conditions = {
-"Damaged": SubResource("Resource_e1joi")
-}
-priority = 0
-
-[sub_resource type="Resource" id="Resource_x6ag7"]
-script = ExtResource("14_ci3pf")
-value = 0
-comparation = 5
-name = "Speed"
-
-[sub_resource type="Resource" id="Resource_fj8kg"]
-script = ExtResource("13_jynpr")
-from = "Idle"
-to = "Walk"
-conditions = {
-"Speed": SubResource("Resource_x6ag7")
-}
-priority = 0
-
-[sub_resource type="Resource" id="Resource_0d7vr"]
-script = ExtResource("13_jynpr")
-from = "Invul"
-to = "Idle"
-conditions = {}
-priority = 0
-
-[sub_resource type="Resource" id="Resource_an7hv"]
-script = ExtResource("15_vd38v")
-name = "Damaged"
-
-[sub_resource type="Resource" id="Resource_c3nta"]
-script = ExtResource("13_jynpr")
-from = "Run"
-to = "Hurt"
-conditions = {
-"Damaged": SubResource("Resource_an7hv")
-}
-priority = 0
-
-[sub_resource type="Resource" id="Resource_ef0ac"]
-script = ExtResource("14_ci3pf")
-value = 0
-comparation = 5
-name = "Speed"
-
-[sub_resource type="Resource" id="Resource_mttmv"]
-script = ExtResource("13_jynpr")
-from = "Run"
-to = "Idle"
-conditions = {
-"Speed": SubResource("Resource_ef0ac")
-}
-priority = 0
-
-[sub_resource type="Resource" id="Resource_bcu1p"]
-script = ExtResource("14_ci3pf")
-value = 10
-comparation = 3
-name = "Speed"
-
-[sub_resource type="Resource" id="Resource_xqi55"]
-script = ExtResource("13_jynpr")
-from = "Run"
-to = "Walk"
-conditions = {
-"Speed": SubResource("Resource_bcu1p")
-}
-priority = 0
-
-[sub_resource type="Resource" id="Resource_3mi1u"]
-script = ExtResource("15_vd38v")
-name = "Damaged"
-
-[sub_resource type="Resource" id="Resource_djtrs"]
-script = ExtResource("13_jynpr")
-from = "Walk"
-to = "Hurt"
-conditions = {
-"Damaged": SubResource("Resource_3mi1u")
-}
-priority = 0
-
-[sub_resource type="Resource" id="Resource_lm6dj"]
-script = ExtResource("14_ci3pf")
-value = 0
-comparation = 2
-name = "Speed"
-
-[sub_resource type="Resource" id="Resource_4816p"]
-script = ExtResource("13_jynpr")
-from = "Walk"
-to = "Idle"
-conditions = {
-"Speed": SubResource("Resource_lm6dj")
-}
-priority = 0
-
-[sub_resource type="Resource" id="Resource_dyawl"]
-script = ExtResource("14_ci3pf")
-value = 10
-comparation = 4
-name = "Speed"
-
-[sub_resource type="Resource" id="Resource_2nldn"]
-script = ExtResource("13_jynpr")
-from = "Walk"
-to = "Run"
-conditions = {
-"Speed": SubResource("Resource_dyawl")
-}
-priority = 0
-
-[sub_resource type="Resource" id="Resource_mfn3l"]
-script = ExtResource("11_le0rc")
-states = {
-"Death": SubResource("Resource_c03cy"),
-"Entry": SubResource("Resource_n1tji"),
-"Hurt": SubResource("Resource_25u6w"),
-"Idle": SubResource("Resource_f0kt6"),
-"Invul": SubResource("Resource_gjtci"),
-"Run": SubResource("Resource_mfxim"),
-"Walk": SubResource("Resource_h1bpw")
-}
-transitions = {
-"Entry": {
-"Idle": SubResource("Resource_ssq2n")
-},
-"Hurt": {
-"Death": SubResource("Resource_2obbp"),
-"Invul": SubResource("Resource_y1hch")
-},
-"Idle": {
-"Hurt": SubResource("Resource_mr2hx"),
-"Walk": SubResource("Resource_fj8kg")
-},
-"Invul": {
-"Idle": SubResource("Resource_0d7vr")
-},
-"Run": {
-"Hurt": SubResource("Resource_c3nta"),
-"Idle": SubResource("Resource_mttmv"),
-"Walk": SubResource("Resource_xqi55")
-},
-"Walk": {
-"Hurt": SubResource("Resource_djtrs"),
-"Idle": SubResource("Resource_4816p"),
-"Run": SubResource("Resource_2nldn")
-}
-}
-name = ""
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_8bgap"]
 radius = 96.0052
 
@@ -838,7 +667,7 @@ radius = 96.0052
 radius = 125.196
 
 [sub_resource type="Animation" id="Animation_s47jc"]
-resource_name = "Animation_1"
+resource_name = "Firing_Spell"
 tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -856,23 +685,19 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fjkui"]
 _data = {
-"Animation_1": SubResource("Animation_s47jc")
+"Firing_Spell": SubResource("Animation_s47jc")
 }
 
-[node name="Jordan" type="CharacterBody2D"]
+[node name="Jordan" type="CharacterBody2D" groups=["Player"]]
 script = SubResource("GDScript_q4etk")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-position = Vector2(324, 40.5)
-scale = Vector2(2.5625, 2.66406)
+position = Vector2(-3, 4)
 sprite_frames = SubResource("SpriteFrames_mnpmp")
 animation = &"attack_2"
-frame_progress = 0.508668
-
-[node name="StateMachinePlayer" type="Node" parent="."]
-script = ExtResource("10_vofmt")
-state_machine = SubResource("Resource_mfn3l")
+frame = 16
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
@@ -890,7 +715,6 @@ shape = SubResource("CircleShape2D_w8ugk")
 libraries = {
 "": SubResource("AnimationLibrary_fjkui")
 }
-autoplay = "Animation_1"
 
 [node name="Target point" type="Marker2D" parent="."]
-position = Vector2(410, 97)
+position = Vector2(52, -1)

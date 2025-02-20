@@ -140,7 +140,7 @@ script = ExtResource("1_587oy")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." groups=["Enemies"]]
 sprite_frames = SubResource("SpriteFrames_nbik5")
 animation = &"Orc1 Run"
-frame_progress = 0.228996
+frame_progress = 0.0685613
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.23825, -4.52999)
