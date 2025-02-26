@@ -1,4 +1,4 @@
-[gd_scene load_steps=104 format=3 uid="uid://ct0t1nc8rnqn4"]
+[gd_scene load_steps=106 format=3 uid="uid://ct0t1nc8rnqn4"]
 
 [ext_resource type="Script" path="res://Player/Samurai_Archer/archer.gd" id="1_jh4hw"]
 [ext_resource type="Texture2D" uid="uid://bv46xtcddkd0v" path="res://Player/Samurai_Archer/Shot.png" id="1_ofvyy"]
@@ -301,9 +301,9 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_djgmp")
 }],
-"loop": true,
+"loop": false,
 "name": &"ArcherDamaged",
-"speed": 4.0
+"speed": 7.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -745,9 +745,47 @@ tracks/0/keys = {
 }]
 }
 
+[sub_resource type="Animation" id="Animation_vr82x"]
+resource_name = "Damaged"
+length = 0.5
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Regular Archer")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"ArcherDamaged", 1.0, false],
+"method": &"play"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_8gbjx"]
+resource_name = "Death"
+length = 2.0
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Regular Archer")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"ArcherDead", 1.0, false],
+"method": &"play"
+}]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ie6ir"]
 _data = {
 "Attack": SubResource("Animation_gfelj"),
+"Damaged": SubResource("Animation_vr82x"),
+"Death": SubResource("Animation_8gbjx"),
 "Idle": SubResource("Animation_7y7fr"),
 "Jump": SubResource("Animation_ke60x"),
 "LRun": SubResource("Animation_ihwf0"),
@@ -755,7 +793,7 @@ _data = {
 "Run": SubResource("Animation_xvbty")
 }
 
-[node name="Archer" type="CharacterBody2D"]
+[node name="Archer" type="CharacterBody2D" groups=["Player"]]
 script = ExtResource("1_jh4hw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -764,15 +802,17 @@ shape = SubResource("RectangleShape2D_a2368")
 
 [node name="Regular Archer" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_jb2um")
-animation = &"ArcherAttack"
-frame = 13
+animation = &"ArcherDamaged"
+frame = 2
 frame_progress = 1.0
 
 [node name="Shadow Archer" type="AnimatedSprite2D" parent="."]
 visible = false
 modulate = Color(0.0728426, 0.0728426, 0.0728426, 1)
 sprite_frames = SubResource("SpriteFrames_jb2um")
-animation = &"ArcherWalk"
+animation = &"ArcherDamaged"
+frame = 2
+frame_progress = 1.0
 
 [node name="StateMachinePlayer" type="Node" parent="."]
 script = ExtResource("8_hmhha")

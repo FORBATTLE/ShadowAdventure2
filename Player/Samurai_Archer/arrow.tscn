@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uvd44"]
 size = Vector2(60, 12)
 
-[node name="Arrow" type="Area2D" groups=["Player"]]
+[node name="Arrow" type="Area2D"]
 gravity = 0.0
 linear_damp = 33.333
 script = ExtResource("1_pqhkf")

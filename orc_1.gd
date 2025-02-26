@@ -5,13 +5,25 @@ var direction: int = 1  # 1 for right, -1 for left
 var is_dying: bool = false
 var is_playing_damage_animation: bool = false  # To track if damage animation is active
 var current_animation: String = "O1Run"  # Tracks the current animation
+@export var attack_damage: int = 10  # Damage dealt to the player
+@export var attack_cooldown: float = 1.5  # Cooldown time between attacks
+var is_attacking: bool = false
+var attack_timer: Timer = Timer.new()
 
 func _ready() -> void:
+	add_child(attack_timer)
+	attack_timer.wait_time = attack_cooldown
+	attack_timer.one_shot = true
+	$AnimationPlayer.animation_finished.connect(_on_animation_finished)
 	pass # Replace with function body.
 
-
+func _on_animation_finished(name: String) -> void:
+	if name == "O1 Attack":
+		is_attacking = false
 
 func _process(delta: float) -> void:
+	if is_attacking:
+		return
 	if is_dying:
 		return
 	# Calculate velocity based on the direction
@@ -72,9 +84,26 @@ func play_animation(animation_name: String) -> void:
 		$AnimationPlayer.play(animation_name)
 		
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	if body.is_in_group("Player"):
-		body.take_damage(1)  # Call the player’s damage function
-	
+	if is_in_group("Player") and not is_attacking:
+		start_attack(body)
+	pass
+
+func start_attack(target: Node) -> void:
+	is_attacking = true
+	$AnimationPlayer.play("O1 Attack")
+	attack_timer.start()  # Start cooldown timer
+	if target.has_method("take_damage"):
+		target.take_damage(attack_damage)
+func _on_attack_timer_timeout() -> void:
+	is_attacking = false
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	play_animation("O1Run")
+	pass # Replace with function body.
+
+
+func _on_attack_range_body_entered(body: Node2D) -> void:
+	print("Detected body:", body.name)
+	if body.name == "Archer" and not is_attacking:
+		print("Attacking player!")
+		start_attack(body)
 	pass # Replace with function body.
