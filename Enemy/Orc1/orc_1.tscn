@@ -285,24 +285,7 @@ animations = [{
 size = Vector2(19.5365, 29.06)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k5jrq"]
-size = Vector2(35.2609, 26.684)
-
-[sub_resource type="Animation" id="Animation_0j216"]
-resource_name = "O1 Attack"
-tracks/0/type = "method"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [&"Orc1 Attack", 1.0, false],
-"method": &"play"
-}]
-}
+size = Vector2(35.2609, 37.6475)
 
 [sub_resource type="Animation" id="Animation_0j216"]
 resource_name = "O1 Attack"
@@ -419,11 +402,7 @@ shape = SubResource("RectangleShape2D_8vlwq")
 [node name="AttackRange" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange"]
-<<<<<<< HEAD
 position = Vector2(1.906, -11.6762)
-=======
-position = Vector2(1.906, -6.19446)
->>>>>>> e54f9c6badc0dabd9256d94d2999949b01ed7054
 shape = SubResource("RectangleShape2D_k5jrq")
 debug_color = Color(0.998761, 0, 0.133327, 0.42)
 

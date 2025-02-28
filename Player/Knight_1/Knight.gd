@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 
 const SPEED = 300.0
-const JUMP_VELOCITY = -400.0
+const JUMP_VELOCITY = -600.0
 
 @onready var AS: AnimatedSprite2D = $AnimatedSprite2D
 @onready var AP: AnimationPlayer = $AnimationPlayer
@@ -13,10 +13,11 @@ var facing_direction = 1  # 1 = Right, -1 = Left
 var is_moving = false
 @export var attack_damage: int = 10  # Damage dealt to the player
 @export var attack_cooldown: float = 1.5  # Cooldown time between attacks
-var is_attacking: bool = false
+var is_slashing: bool = false
 var attack_timer: Timer = Timer.new()
 func _ready():
 	update_health_bar()
+	current_health = max_health
 @onready var hit_box: Area2D = $HitBox
 
 	
@@ -41,7 +42,7 @@ func _physics_process(delta: float) -> void:
 		AP.play("Jump")
 	
 	if Input.is_action_just_pressed("ui_accept"):
-		start_attack()
+		start_attack($".")
 
 
 	# Get the input direction and handle the movement/deceleration.
@@ -87,7 +88,7 @@ func update_health_bar():
 		health_bar.value = current_health
 
 func start_attack(target: Node) -> void:
-	is_attacking = true
+	is_slashing = true
 	AP.play("Attack")
 	attack_timer.start()  # Start cooldown timer
 	if target.has_method("take_damage"):
