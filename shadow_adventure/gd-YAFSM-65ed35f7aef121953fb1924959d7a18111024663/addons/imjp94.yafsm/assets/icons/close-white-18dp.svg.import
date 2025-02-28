@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://l78bjwo7shm"
-path="res://.godot/imported/close-white-18dp.svg-3f0f1fbae48c577f49fdb0f7a42eceda.ctex"
+path="res://.godot/imported/close-white-18dp.svg-c09ba5d2b06b57de6ff16ba3b7dc9e55.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://gd-YAFSM-65ed35f7aef121953fb1924959d7a18111024663/addons/imjp94.yafsm/assets/icons/close-white-18dp.svg"
-dest_files=["res://.godot/imported/close-white-18dp.svg-3f0f1fbae48c577f49fdb0f7a42eceda.ctex"]
+source_file="res://shadow_adventure/gd-YAFSM-65ed35f7aef121953fb1924959d7a18111024663/addons/imjp94.yafsm/assets/icons/close-white-18dp.svg"
+dest_files=["res://.godot/imported/close-white-18dp.svg-c09ba5d2b06b57de6ff16ba3b7dc9e55.ctex"]
 
 [params]
 

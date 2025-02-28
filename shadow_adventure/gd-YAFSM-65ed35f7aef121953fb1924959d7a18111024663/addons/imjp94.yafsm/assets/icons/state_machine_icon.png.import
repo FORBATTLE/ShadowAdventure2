@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://quofx2t3tj1b"
-path="res://.godot/imported/state_machine_icon.png-d503092746b87ed7c87f0d87a581a450.ctex"
+path="res://.godot/imported/state_machine_icon.png-72d0da66870c5aacb04a14b9c0e7bf2d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://gd-YAFSM-65ed35f7aef121953fb1924959d7a18111024663/addons/imjp94.yafsm/assets/icons/state_machine_icon.png"
-dest_files=["res://.godot/imported/state_machine_icon.png-d503092746b87ed7c87f0d87a581a450.ctex"]
+source_file="res://shadow_adventure/gd-YAFSM-65ed35f7aef121953fb1924959d7a18111024663/addons/imjp94.yafsm/assets/icons/state_machine_icon.png"
+dest_files=["res://.godot/imported/state_machine_icon.png-72d0da66870c5aacb04a14b9c0e7bf2d.ctex"]
 
 [params]
 

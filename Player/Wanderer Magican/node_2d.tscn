@@ -14,15 +14,15 @@ size = Vector2(67, 492)
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(579, 450)
+position = Vector2(367, 444)
 shape = SubResource("RectangleShape2D_oxn0k")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(19, -161)
+position = Vector2(1060, 275)
 shape = SubResource("RectangleShape2D_xnha4")
 
 [node name="Jordan" parent="." instance=ExtResource("1_ttepv")]
-position = Vector2(294, 278)
+position = Vector2(217, 361)
 
 [node name="Orc1" parent="." instance=ExtResource("2_tnt8u")]
-position = Vector2(592, 377)
+position = Vector2(1055, 367)

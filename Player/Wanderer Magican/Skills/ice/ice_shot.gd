@@ -1,5 +1,5 @@
 extends Area2D
-var speed = 300
+var speed = 200
 var speed_mod = 1.5
 var direction = Vector2.ONE
 
