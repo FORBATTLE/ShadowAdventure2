@@ -2,8 +2,8 @@
 
 [ext_resource type="Texture2D" uid="uid://dgp2kyt2vpfhb" path="res://icon.svg" id="2_kp0ur"]
 [ext_resource type="PackedScene" uid="uid://7agne1pfbb3c" path="res://Player/ui.tscn" id="2_nnvn5"]
-[ext_resource type="PackedScene" uid="uid://byy0rnchgmlk0" path="res://Enemy/Orc1/orc_1.tscn" id="4_2ujna"]
-[ext_resource type="PackedScene" uid="uid://ct0t1nc8rnqn4" path="res://Player/Samurai_Archer/archer.tscn" id="4_qehu4"]
+[ext_resource type="PackedScene" path="res://Enemy/Orc1/orc_1.tscn" id="4_2ujna"]
+[ext_resource type="PackedScene" path="res://Player/Samurai_Archer/archer.tscn" id="4_qehu4"]
 [ext_resource type="Texture2D" uid="uid://ndnwh4d35b8n" path="res://Shadow_Adventure-main/Nature_environment_01.png" id="5_7jp3e"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ysiti"]
