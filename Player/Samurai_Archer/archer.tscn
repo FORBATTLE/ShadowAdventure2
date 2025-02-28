@@ -1,4 +1,8 @@
+<<<<<<< HEAD
+[gd_scene load_steps=75 format=3 uid="uid://ct0t1nc8rnqn4"]
+=======
 [gd_scene load_steps=106 format=3 uid="uid://ct0t1nc8rnqn4"]
+>>>>>>> 556324cd5a086391c16d10de4c8a012d1d2171d5
 
 [ext_resource type="Script" path="res://Player/Samurai_Archer/archer.gd" id="1_jh4hw"]
 [ext_resource type="Texture2D" uid="uid://bv46xtcddkd0v" path="res://Player/Samurai_Archer/Shot.png" id="1_ofvyy"]
@@ -9,11 +13,6 @@
 [ext_resource type="Texture2D" uid="uid://csvirilql7diq" path="res://Player/Samurai_Archer/Run.png" id="6_rgfnd"]
 [ext_resource type="Texture2D" uid="uid://imymemuwfblj" path="res://Player/Samurai_Archer/Walk.png" id="7_llirr"]
 [ext_resource type="Script" path="res://addons/imjp94.yafsm/src/StateMachinePlayer.gd" id="8_hmhha"]
-[ext_resource type="Script" path="res://addons/imjp94.yafsm/src/states/StateMachine.gd" id="9_3b8db"]
-[ext_resource type="Script" path="res://addons/imjp94.yafsm/src/states/State.gd" id="10_jtenk"]
-[ext_resource type="Script" path="res://addons/imjp94.yafsm/src/conditions/IntegerCondition.gd" id="11_mao46"]
-[ext_resource type="Script" path="res://addons/imjp94.yafsm/src/transitions/Transition.gd" id="12_x4jx2"]
-[ext_resource type="Script" path="res://addons/imjp94.yafsm/src/conditions/Condition.gd" id="13_pnf04"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a2368"]
 size = Vector2(46, 75)
@@ -448,190 +447,6 @@ animations = [{
 "speed": 8.0
 }]
 
-[sub_resource type="Resource" id="Resource_fcojs"]
-script = ExtResource("10_jtenk")
-name = "Damaged"
-metadata/graph_offset = Vector2(598, 102)
-
-[sub_resource type="Resource" id="Resource_p0ngy"]
-script = ExtResource("10_jtenk")
-name = "Death"
-metadata/graph_offset = Vector2(706, 222)
-
-[sub_resource type="Resource" id="Resource_sv7d0"]
-script = ExtResource("10_jtenk")
-name = "Entry"
-metadata/graph_offset = Vector2(246, 222)
-
-[sub_resource type="Resource" id="Resource_aovet"]
-script = ExtResource("10_jtenk")
-name = "Idle"
-metadata/graph_offset = Vector2(406, 222)
-
-[sub_resource type="Resource" id="Resource_4qidl"]
-script = ExtResource("10_jtenk")
-name = "Invun"
-metadata/graph_offset = Vector2(406, 102)
-
-[sub_resource type="Resource" id="Resource_q2thy"]
-script = ExtResource("10_jtenk")
-name = "Run"
-metadata/graph_offset = Vector2(606, 222)
-
-[sub_resource type="Resource" id="Resource_l8t3g"]
-script = ExtResource("10_jtenk")
-name = "Walk"
-metadata/graph_offset = Vector2(506, 222)
-
-[sub_resource type="Resource" id="Resource_seumi"]
-script = ExtResource("11_mao46")
-value = 0
-comparation = 5
-name = "Heath"
-
-[sub_resource type="Resource" id="Resource_dudx5"]
-script = ExtResource("12_x4jx2")
-from = "Damaged"
-to = "Death"
-conditions = {
-"Heath": SubResource("Resource_seumi")
-}
-priority = 0
-
-[sub_resource type="Resource" id="Resource_u5s1o"]
-script = ExtResource("11_mao46")
-value = 0
-comparation = 2
-name = "Health"
-
-[sub_resource type="Resource" id="Resource_j0jsa"]
-script = ExtResource("12_x4jx2")
-from = "Damaged"
-to = "Invun"
-conditions = {
-"Health": SubResource("Resource_u5s1o")
-}
-priority = 0
-
-[sub_resource type="Resource" id="Resource_4jold"]
-script = ExtResource("12_x4jx2")
-from = "Entry"
-to = "Idle"
-conditions = {}
-priority = 0
-
-[sub_resource type="Resource" id="Resource_dmhye"]
-script = ExtResource("13_pnf04")
-name = "Hurt"
-
-[sub_resource type="Resource" id="Resource_n65vd"]
-script = ExtResource("12_x4jx2")
-from = "Idle"
-to = "Damaged"
-conditions = {
-"Hurt": SubResource("Resource_dmhye")
-}
-priority = 0
-
-[sub_resource type="Resource" id="Resource_31tou"]
-script = ExtResource("12_x4jx2")
-from = "Idle"
-to = "Walk"
-conditions = {}
-priority = 0
-
-[sub_resource type="Resource" id="Resource_2udlk"]
-script = ExtResource("12_x4jx2")
-from = "Invun"
-to = "Idle"
-conditions = {}
-priority = 0
-
-[sub_resource type="Resource" id="Resource_34b6m"]
-script = ExtResource("13_pnf04")
-name = "Hurt"
-
-[sub_resource type="Resource" id="Resource_2vb8d"]
-script = ExtResource("12_x4jx2")
-from = "Run"
-to = "Damaged"
-conditions = {
-"Hurt": SubResource("Resource_34b6m")
-}
-priority = 0
-
-[sub_resource type="Resource" id="Resource_jxgl0"]
-script = ExtResource("12_x4jx2")
-from = "Run"
-to = "Walk"
-conditions = {}
-priority = 0
-
-[sub_resource type="Resource" id="Resource_2sf0i"]
-script = ExtResource("13_pnf04")
-name = "Hurt"
-
-[sub_resource type="Resource" id="Resource_ogwc7"]
-script = ExtResource("12_x4jx2")
-from = "Walk"
-to = "Damaged"
-conditions = {
-"Hurt": SubResource("Resource_2sf0i")
-}
-priority = 0
-
-[sub_resource type="Resource" id="Resource_84jet"]
-script = ExtResource("12_x4jx2")
-from = "Walk"
-to = "Idle"
-conditions = {}
-priority = 0
-
-[sub_resource type="Resource" id="Resource_7jvj1"]
-script = ExtResource("12_x4jx2")
-from = "Walk"
-to = "Run"
-conditions = {}
-priority = 0
-
-[sub_resource type="Resource" id="Resource_m2371"]
-script = ExtResource("9_3b8db")
-states = {
-"Damaged": SubResource("Resource_fcojs"),
-"Death": SubResource("Resource_p0ngy"),
-"Entry": SubResource("Resource_sv7d0"),
-"Idle": SubResource("Resource_aovet"),
-"Invun": SubResource("Resource_4qidl"),
-"Run": SubResource("Resource_q2thy"),
-"Walk": SubResource("Resource_l8t3g")
-}
-transitions = {
-"Damaged": {
-"Death": SubResource("Resource_dudx5"),
-"Invun": SubResource("Resource_j0jsa")
-},
-"Entry": {
-"Idle": SubResource("Resource_4jold")
-},
-"Idle": {
-"Damaged": SubResource("Resource_n65vd"),
-"Walk": SubResource("Resource_31tou")
-},
-"Invun": {
-"Idle": SubResource("Resource_2udlk")
-},
-"Run": {
-"Damaged": SubResource("Resource_2vb8d"),
-"Walk": SubResource("Resource_jxgl0")
-},
-"Walk": {
-"Damaged": SubResource("Resource_ogwc7"),
-"Idle": SubResource("Resource_84jet"),
-"Run": SubResource("Resource_7jvj1")
-}
-}
-name = ""
-
 [sub_resource type="Animation" id="Animation_gfelj"]
 resource_name = "Attack"
 length = 0.5
@@ -816,7 +631,6 @@ frame_progress = 1.0
 
 [node name="StateMachinePlayer" type="Node" parent="."]
 script = ExtResource("8_hmhha")
-state_machine = SubResource("Resource_m2371")
 
 [node name="bow" type="Marker2D" parent="."]
 position = Vector2(32, 13)

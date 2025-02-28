@@ -1,11 +1,17 @@
+<<<<<<< HEAD
+[gd_scene load_steps=20 format=3 uid="uid://byy0rnchgmlk0"]
+
+[ext_resource type="Script" path="res://Enemy/Orc1/orc_1.gd" id="1_587oy"]
+=======
 [gd_scene load_steps=53 format=3 uid="uid://byy0rnchgmlk0"]
 
 [ext_resource type="Script" path="res://orc_1.gd" id="1_587oy"]
 [ext_resource type="Texture2D" uid="uid://dh22glorik4ps" path="res://Enemy/Orc1/Orc1_attack/orc1_attack_full.png" id="2_fj2c0"]
+>>>>>>> 556324cd5a086391c16d10de4c8a012d1d2171d5
 [ext_resource type="Texture2D" uid="uid://2qxeqi677rhx" path="res://Enemy/Orc1/Orc1_idle/orc1_idle_full.png" id="2_o4wow"]
-[ext_resource type="Texture2D" uid="uid://c2bwmnulv8efn" path="res://Enemy/Orc1/Orc1_hurt/orc1_hurt_full.png" id="2_uepao"]
-[ext_resource type="Texture2D" uid="uid://8kai3uul2i4r" path="res://Enemy/Orc1/Orc1_death/orc1_death_full.png" id="3_475ft"]
 [ext_resource type="Texture2D" uid="uid://bkgdaphu4r05q" path="res://Enemy/Orc1/Orc1_walk/orc1_walk_full.png" id="3_l6o0r"]
+<<<<<<< HEAD
+=======
 [ext_resource type="Texture2D" uid="uid://s6snlwyvqsdu" path="res://Enemy/Orc1/Orc1_death/orc1_death_red.png" id="4_sgcda"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kjb1n"]
@@ -107,6 +113,7 @@ region = Rect2(384, 192, 64, 64)
 [sub_resource type="AtlasTexture" id="AtlasTexture_2eyk6"]
 atlas = ExtResource("4_sgcda")
 region = Rect2(256, 192, 64, 64)
+>>>>>>> 556324cd5a086391c16d10de4c8a012d1d2171d5
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gyueq"]
 atlas = ExtResource("2_o4wow")
@@ -152,6 +159,8 @@ region = Rect2(320, 192, 64, 64)
 animations = [{
 "frames": [{
 "duration": 1.0,
+<<<<<<< HEAD
+=======
 "texture": SubResource("AtlasTexture_kjb1n")
 }, {
 "duration": 1.0,
@@ -242,6 +251,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+>>>>>>> 556324cd5a086391c16d10de4c8a012d1d2171d5
 "texture": SubResource("AtlasTexture_gyueq")
 }, {
 "duration": 1.0,
@@ -372,6 +382,10 @@ tracks/0/keys = {
 }]
 }
 
+<<<<<<< HEAD
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rtnq7"]
+_data = {
+=======
 [sub_resource type="Animation" id="Animation_eacl5"]
 length = 0.001
 
@@ -380,9 +394,9 @@ _data = {
 "O1 Attack": SubResource("Animation_0j216"),
 "O1 Damaged": SubResource("Animation_uofsq"),
 "O1 Die": SubResource("Animation_yo46h"),
+>>>>>>> 556324cd5a086391c16d10de4c8a012d1d2171d5
 "O1Idle": SubResource("Animation_4n7el"),
-"O1Run": SubResource("Animation_jg2in"),
-"RESET": SubResource("Animation_eacl5")
+"O1Run": SubResource("Animation_jg2in")
 }
 
 [node name="Orc1" type="CharacterBody2D" groups=["Enemies"]]
@@ -391,9 +405,14 @@ script = ExtResource("1_587oy")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." groups=["Enemies"]]
 sprite_frames = SubResource("SpriteFrames_nbik5")
+<<<<<<< HEAD
+animation = &"Orc1 Run"
+frame_progress = 0.0685613
+=======
 animation = &"Orc1 Attack"
 frame = 7
 frame_progress = 1.0
+>>>>>>> 556324cd5a086391c16d10de4c8a012d1d2171d5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.23825, -4.52999)
@@ -411,6 +430,17 @@ libraries = {
 "": SubResource("AnimationLibrary_rtnq7")
 }
 
+<<<<<<< HEAD
+[node name="RayCast2D" type="RayCast2D" parent="."]
+scale = Vector2(0.99246, 1)
+target_position = Vector2(-110.427, -0.476499)
+
+[node name="RayCast2D2" type="RayCast2D" parent="."]
+target_position = Vector2(126.749, 0.476499)
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+=======
 [connection signal="body_entered" from="AttackRange" to="." method="_on_attack_range_body_entered"]
 [connection signal="body_entered" from="AttackRange" to="." method="_on_area_2d_body_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+>>>>>>> 556324cd5a086391c16d10de4c8a012d1d2171d5

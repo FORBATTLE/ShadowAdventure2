@@ -1,0 +1,153 @@
+[gd_scene load_steps=17 format=3 uid="uid://knaxvt05fg80"]
+
+[ext_resource type="Script" path="res://Player/Wanderer Magican/Skills/water/area_2d.gd" id="1_8l7tq"]
+[ext_resource type="Texture2D" path="res://Player/Wanderer Magican/Skills/water/water6.png" id="2_7bcn3"]
+[ext_resource type="Texture2D" path="res://Player/Wanderer Magican/Skills/water/water7.png" id="3_is7n6"]
+[ext_resource type="Texture2D" path="res://Player/Wanderer Magican/Skills/water/water8.png" id="4_huqff"]
+[ext_resource type="Texture2D" path="res://Player/Wanderer Magican/Skills/water/water9.png" id="5_6c8gm"]
+[ext_resource type="Texture2D" path="res://Player/Wanderer Magican/Skills/water/water10.png" id="6_bkqs7"]
+[ext_resource type="Texture2D" path="res://Player/Wanderer Magican/Skills/water/water11.png" id="7_pphyl"]
+[ext_resource type="Texture2D" path="res://Player/Wanderer Magican/Skills/water/water3.png" id="8_7k3mv"]
+[ext_resource type="Texture2D" path="res://Player/Wanderer Magican/Skills/water/water4.png" id="9_0vgcg"]
+[ext_resource type="Texture2D" path="res://Player/Wanderer Magican/Skills/water/water5.png" id="10_y4qcc"]
+[ext_resource type="Texture2D" path="res://Player/Wanderer Magican/Skills/water/water1.png" id="11_2h1m6"]
+[ext_resource type="Texture2D" path="res://Player/Wanderer Magican/Skills/water/water2.png" id="12_5y313"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fiyfi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_7bcn3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_is7n6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_huqff")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_6c8gm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_bkqs7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_pphyl")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"Impact",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_7k3mv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_0vgcg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_y4qcc")
+}],
+"loop": true,
+"name": &"flying",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_2h1m6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_5y313")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_7k3mv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_0vgcg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_y4qcc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_7bcn3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_is7n6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_huqff")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_6c8gm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_bkqs7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_pphyl")
+}],
+"loop": true,
+"name": &"water_gun",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_2h1m6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_5y313")
+}],
+"loop": false,
+"name": &"water_start",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_e22ve"]
+radius = 24.8244
+
+[sub_resource type="Animation" id="Animation_fsx8j"]
+resource_name = "Flying"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.133333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"flying", 1.0, false],
+"method": &"play"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_eimgx"]
+_data = {
+"Flying": SubResource("Animation_fsx8j")
+}
+
+[node name="Water_gun" type="Area2D" groups=["Projectile"]]
+scale = Vector2(1.5, 1.5)
+script = ExtResource("1_8l7tq")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-3, -2)
+sprite_frames = SubResource("SpriteFrames_fiyfi")
+animation = &"Impact"
+autoplay = "water_start"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-9, 3.5)
+shape = SubResource("CircleShape2D_e22ve")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_eimgx")
+}
+autoplay = "Flying"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
