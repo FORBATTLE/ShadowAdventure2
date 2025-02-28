@@ -26,7 +26,7 @@ func _ready():
 	shoot_timer.timeout.connect(_reset_shoot)
 	add_child(shoot_timer)
 	current_health = max_health
-	health_bar = get_node("UI/TextureProgressBar")  # Adjust the path as needed
+	health_bar = get_node("UI/TextureProgressBar") # Adjust the path as needed
 	update_health_bar()
 	
 func _physics_process(delta: float) -> void:
@@ -106,6 +106,7 @@ func take_damage(amount: int):
 	# Reduce health by the damage amount
 	current_health -= amount
 	current_health = clamp(current_health, 0, max_health)  # Ensure it doesn’t go below 0
+	update_health_bar()
 	if current_health <= 0:
 		die()
 	else:
