@@ -176,7 +176,6 @@ func _physics_process(delta: float) -> void:
 	
 	if not is_on_floor():
 		$AnimationPlayer.play("Jump")
-	
 	elif is_moving and not is_shooting:
 		$AnimationPlayer.play("Run")
 	elif not is_moving and not is_shooting:

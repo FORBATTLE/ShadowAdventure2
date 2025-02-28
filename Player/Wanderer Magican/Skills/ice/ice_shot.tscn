@@ -202,7 +202,7 @@ _data = {
 [node name="Ice_shot" type="Area2D" groups=["Projectile"]]
 script = ExtResource("1_mjc7o")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." groups=["Projectiles"]]
 sprite_frames = SubResource("SpriteFrames_4l6sx")
 animation = &"Impact"
 frame = 8
@@ -219,3 +219,4 @@ libraries = {
 autoplay = "Flying"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

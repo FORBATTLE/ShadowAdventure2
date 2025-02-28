@@ -23,6 +23,7 @@ enabled=PackedStringArray()
 
 Player=""
 Enemies="Any mob"
+Projectiles=""
 
 [input]
 

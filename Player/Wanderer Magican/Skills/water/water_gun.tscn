@@ -130,7 +130,7 @@ _data = {
 "Flying": SubResource("Animation_fsx8j")
 }
 
-[node name="Water_gun" type="Area2D" groups=["Projectile"]]
+[node name="Water_gun" type="Area2D" groups=["Projectile", "Projectiles"]]
 scale = Vector2(1.5, 1.5)
 script = ExtResource("1_8l7tq")
 

@@ -20,3 +20,8 @@ func _on_body_entered(body: Node2D) -> void:
 		$AnimatedSprite2D.play("Impact")
 		speed = 0
 		pass # Replace with function body.
+
+
+func _on_animated_sprite_2d_animation_finished() -> void:
+	queue_free()
+	pass # Replace with function body.

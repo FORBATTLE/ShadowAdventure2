@@ -1,4 +1,4 @@
-[gd_scene load_steps=89 format=3 uid="uid://cv4vn1pnprwam"]
+[gd_scene load_steps=90 format=3 uid="uid://cv4vn1pnprwam"]
 
 [ext_resource type="Texture2D" uid="uid://cfe75ey5qxt6h" path="res://Player/Wanderer Magican/Attack_1.png" id="1_vufiu"]
 [ext_resource type="Texture2D" uid="uid://bpqxxkocf2ln8" path="res://Player/Wanderer Magican/Attack_2.png" id="2_7fc2c"]
@@ -60,9 +60,12 @@ func _physics_process(delta: float) -> void:
 		$AnimationPlayer.play(\"Idle\")
 	
 	if Input.is_action_just_pressed(\"ui_accept\") and can_shoot:
+		spell_ice()
+		play_shoot_animation()
+		
 		pass
 	
-	spell_ice()
+	
 	move_and_slide()
 
 
@@ -92,6 +95,9 @@ func spell_water():
 func play_shoot_animation():
 	is_shooting = true
 	$AnimationPlayer.play(\"Firing_Spell\")
+	
+	await get_tree().create_timer(0.5).timeout
+	is_shooting = false
 	
 
 func _reset_shoot():
@@ -126,37 +132,41 @@ region = Rect2(640, 28, 128, 100)
 atlas = ExtResource("1_vufiu")
 region = Rect2(768, 28, 128, 100)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_xshu5"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_fgcs3"]
 atlas = ExtResource("2_7fc2c")
-region = Rect2(5, 48, 128, 80)
+region = Rect2(0, 49, 128, 79)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_veufc"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_113tg"]
 atlas = ExtResource("2_7fc2c")
-region = Rect2(133, 48, 128, 80)
+region = Rect2(128, 49, 128, 79)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_02r4e"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_q6olo"]
 atlas = ExtResource("2_7fc2c")
-region = Rect2(261, 48, 128, 80)
+region = Rect2(256, 49, 128, 79)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_yfeyi"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_0duoi"]
 atlas = ExtResource("2_7fc2c")
-region = Rect2(389, 48, 128, 80)
+region = Rect2(384, 49, 128, 79)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_keq5a"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_2cda2"]
 atlas = ExtResource("2_7fc2c")
-region = Rect2(517, 48, 128, 80)
+region = Rect2(512, 49, 128, 79)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_t36vn"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_pf8xh"]
 atlas = ExtResource("2_7fc2c")
-region = Rect2(645, 48, 128, 80)
+region = Rect2(640, 49, 128, 79)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_4wd4f"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_fi3uy"]
 atlas = ExtResource("2_7fc2c")
-region = Rect2(773, 48, 128, 80)
+region = Rect2(768, 49, 128, 79)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_loy6k"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_f7cm5"]
 atlas = ExtResource("2_7fc2c")
-region = Rect2(901, 48, 128, 80)
+region = Rect2(896, 49, 128, 79)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5dy67"]
+atlas = ExtResource("2_7fc2c")
+region = Rect2(1024, 49, 128, 79)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l80hu"]
 atlas = ExtResource("3_4mrjg")
@@ -408,28 +418,31 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_xshu5")
+"texture": SubResource("AtlasTexture_fgcs3")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_veufc")
+"texture": SubResource("AtlasTexture_113tg")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_02r4e")
+"texture": SubResource("AtlasTexture_q6olo")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_yfeyi")
+"texture": SubResource("AtlasTexture_0duoi")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_keq5a")
+"texture": SubResource("AtlasTexture_2cda2")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_t36vn")
+"texture": SubResource("AtlasTexture_pf8xh")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_4wd4f")
+"texture": SubResource("AtlasTexture_fi3uy")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_loy6k")
+"texture": SubResource("AtlasTexture_f7cm5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5dy67")
 }],
 "loop": false,
 "name": &"attack_2",
@@ -637,7 +650,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8bgap"]
-radius = 39.4089
+radius = 42.4264
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_w8ugk"]
 radius = 125.196
@@ -725,11 +738,10 @@ script = SubResource("GDScript_q4etk")
 texture_filter = 1
 position = Vector2(0, -0.390168)
 sprite_frames = SubResource("SpriteFrames_mnpmp")
-animation = &"run"
-frame_progress = 0.519773
+animation = &"attack_2"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-2, 7)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["Player"]]
+position = Vector2(-7, 7)
 shape = SubResource("CircleShape2D_8bgap")
 
 [node name="Area2D" type="Area2D" parent="."]
