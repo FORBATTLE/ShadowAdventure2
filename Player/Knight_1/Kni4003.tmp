@@ -651,7 +651,7 @@ _data = {
 "Run": SubResource("Animation_5us1q")
 }
 
-[node name="Knight" type="CharacterBody2D" groups=["Player"]]
+[node name="Knight" type="CharacterBody2D"]
 floor_block_on_wall = false
 script = ExtResource("1_65yeq")
 max_health = null

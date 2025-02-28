@@ -287,6 +287,23 @@ size = Vector2(19.5365, 29.06)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k5jrq"]
 size = Vector2(35.2609, 37.6475)
 
+[sub_resource type="Animation" id="Animation_0j216"]
+resource_name = "O1 Attack"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"Orc1 Attack", 1.0, false],
+"method": &"play"
+}]
+}
+
 [sub_resource type="Animation" id="Animation_uofsq"]
 resource_name = "O1 Damaged"
 tracks/0/type = "method"
@@ -358,23 +375,6 @@ tracks/0/keys = {
 [sub_resource type="Animation" id="Animation_eacl5"]
 length = 0.001
 
-[sub_resource type="Animation" id="Animation_0j216"]
-resource_name = "O1 Attack"
-tracks/0/type = "method"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [&"Orc1 Attack", 1.0, false],
-"method": &"play"
-}]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rtnq7"]
 _data = {
 "O1 Attack": SubResource("Animation_0j216"),
@@ -403,7 +403,6 @@ shape = SubResource("RectangleShape2D_8vlwq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange"]
 position = Vector2(1.906, -11.6762)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_k5jrq")
 debug_color = Color(0.998761, 0, 0.133327, 0.42)
 
@@ -412,6 +411,6 @@ libraries = {
 "": SubResource("AnimationLibrary_rtnq7")
 }
 
-[connection signal="body_entered" from="AttackRange" to="." method="_on_attack_range_body_entered"]
 [connection signal="body_entered" from="AttackRange" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="AttackRange" to="." method="_on_attack_range_body_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

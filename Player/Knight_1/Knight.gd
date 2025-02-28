@@ -11,9 +11,13 @@ var current_health: int
 var health_bar: TextureProgressBar
 var facing_direction = 1  # 1 = Right, -1 = Left
 var is_moving = false
-##
+@export var attack_damage: int = 10  # Damage dealt to the player
+@export var attack_cooldown: float = 1.5  # Cooldown time between attacks
+var is_attacking: bool = false
+var attack_timer: Timer = Timer.new()
 func _ready():
 	update_health_bar()
+@onready var hit_box: Area2D = $HitBox
 
 	
 func _physics_process(delta: float) -> void:
@@ -36,6 +40,8 @@ func _physics_process(delta: float) -> void:
 		velocity.y = JUMP_VELOCITY
 		AP.play("Jump")
 	
+	if Input.is_action_just_pressed("ui_accept"):
+		start_attack()
 
 
 	# Get the input direction and handle the movement/deceleration.
@@ -79,3 +85,10 @@ func die():
 func update_health_bar():
 	if health_bar:
 		health_bar.value = current_health
+
+func start_attack(target: Node) -> void:
+	is_attacking = true
+	AP.play("Attack")
+	attack_timer.start()  # Start cooldown timer
+	if target.has_method("take_damage"):
+		target.take_damage(attack_damage)
