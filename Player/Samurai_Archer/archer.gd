@@ -219,7 +219,19 @@ func take_damage(amount: int):
 	current_health = clamp(current_health, 0, max_health)  # Ensure it doesn’t go below 0
 	if current_health <= 0:
 		die()
+	else:
+		set_physics_process(false)  
+		set_process(false)
+		$AnimationPlayer.stop()
+		$AnimationPlayer.play("Damaged")
+		await $AnimationPlayer.animation_finished
+		set_physics_process(true)  
+		set_process(true)
 func die():
+	set_physics_process(false)
+	set_process(false)
+	AP.play("Death")
+	await $AnimationPlayer.animation_finished
 	# Handle player death (e.g., play animation, reset level)
 	print("Player has died!")
 	# Optionally, restart the scene or disable player controls
