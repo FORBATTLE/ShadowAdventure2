@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://cv4vn1pnprwam" path="res://Player/Wanderer Magican/jordan.tscn" id="1_2qvaj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_txj5d"]
-size = Vector2(1175, 45)
+size = Vector2(1175, 165.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sufxj"]
 size = Vector2(20, 361)
@@ -13,7 +13,7 @@ size = Vector2(20, 361)
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(575, 444)
+position = Vector2(575, 383.75)
 shape = SubResource("RectangleShape2D_txj5d")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
@@ -21,4 +21,4 @@ position = Vector2(612, 181)
 shape = SubResource("RectangleShape2D_sufxj")
 
 [node name="Jordan" parent="." instance=ExtResource("1_2qvaj")]
-position = Vector2(146, 171)
+position = Vector2(161, 225)

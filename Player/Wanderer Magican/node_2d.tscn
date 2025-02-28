@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://dw1tbej3xxojw"]
+
+[ext_resource type="PackedScene" uid="uid://cv4vn1pnprwam" path="res://Player/Wanderer Magican/jordan.tscn" id="1_ttepv"]
+[ext_resource type="PackedScene" uid="uid://byy0rnchgmlk0" path="res://Enemy/Orc1/orc_1.tscn" id="2_tnt8u"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oxn0k"]
+size = Vector2(1167, 87)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xnha4"]
+size = Vector2(67, 492)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(367, 444)
+shape = SubResource("RectangleShape2D_oxn0k")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(1060, 275)
+shape = SubResource("RectangleShape2D_xnha4")
+
+[node name="Jordan" parent="." instance=ExtResource("1_ttepv")]
+position = Vector2(217, 361)
+
+[node name="Orc1" parent="." instance=ExtResource("2_tnt8u")]
+position = Vector2(1055, 367)
