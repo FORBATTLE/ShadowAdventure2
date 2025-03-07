@@ -21,6 +21,7 @@ const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 @export var ICE_SHOT = preload(\"res://Player/Wanderer Magican/Skills/ice/ice_shot.tscn\")
 @export var Water_Gun = preload(\"res://Player/Wanderer Magican/Skills/water/water_gun.tscn\")
+@export var Light_Shield = preload(\"res://Player/Wanderer Magican/Skills/light/light_shield.tscn\")
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	# Add the gravity.
@@ -63,6 +64,7 @@ func _physics_process(delta: float) -> void:
 		spell_ice()
 		play_shoot_animation()
 		
+		spell_light()
 		pass
 	
 	
@@ -79,6 +81,19 @@ func spell_ice():
 		Ice_projectile.rotation = rotation
 		get_tree().get_root().add_child(Ice_projectile)
 		play_shoot_animation()
+
+func spell_light():
+	if Input.is_action_just_pressed(\"Spell(area)\"):
+		var Light_area = Light_Shield.instantiate()
+		var light_vec = $\"Target point\".global_position - global_position
+		light_vec = light_vec.normalized()
+		Light_area.direction = light_vec
+		Light_area.global_position = $\"Target point\".global_position
+		Light_area.rotation = rotation
+		get_tree().get_root().add_child(Light_area)
+
+
+
 
 
 func spell_water():
@@ -649,11 +664,12 @@ animations = [{
 "speed": 7.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_8bgap"]
-radius = 42.4264
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_n7mqv"]
+radius = 22.0
+height = 82.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_w8ugk"]
-radius = 125.196
+radius = 43.0
 
 [sub_resource type="Animation" id="Animation_s47jc"]
 resource_name = "Firing_Spell"
@@ -739,16 +755,17 @@ texture_filter = 1
 position = Vector2(0, -0.390168)
 sprite_frames = SubResource("SpriteFrames_mnpmp")
 animation = &"attack_2"
+frame = 8
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["Player"]]
-position = Vector2(-7, 7)
-shape = SubResource("CircleShape2D_8bgap")
+position = Vector2(-18, 8)
+shape = SubResource("CapsuleShape2D_n7mqv")
 
 [node name="Area2D" type="Area2D" parent="."]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(283, 130)
+position = Vector2(-18, 8)
 shape = SubResource("CircleShape2D_w8ugk")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

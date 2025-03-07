@@ -1,4 +1,4 @@
-[gd_scene load_steps=106 format=3 uid="uid://ct0t1nc8rnqn4"]
+[gd_scene load_steps=106 format=3 uid="uid://tx6vjm8ah35p"]
 
 [ext_resource type="Script" path="res://Player/Samurai_Archer/archer.gd" id="1_jh4hw"]
 [ext_resource type="Texture2D" uid="uid://bv46xtcddkd0v" path="res://Player/Samurai_Archer/Shot.png" id="1_ofvyy"]

@@ -1,12 +1,13 @@
 [gd_scene load_steps=53 format=3 uid="uid://byy0rnchgmlk0"]
 
-[ext_resource type="Script" path="res://orc_1.gd" id="1_587oy"]
+[ext_resource type="Script" path="res://Enemy/orc_1.gd" id="1_587oy"]
 [ext_resource type="Texture2D" uid="uid://dh22glorik4ps" path="res://Enemy/Orc1/Orc1_attack/orc1_attack_full.png" id="2_fj2c0"]
 [ext_resource type="Texture2D" uid="uid://2qxeqi677rhx" path="res://Enemy/Orc1/Orc1_idle/orc1_idle_full.png" id="2_o4wow"]
 [ext_resource type="Texture2D" uid="uid://c2bwmnulv8efn" path="res://Enemy/Orc1/Orc1_hurt/orc1_hurt_full.png" id="2_uepao"]
 [ext_resource type="Texture2D" uid="uid://8kai3uul2i4r" path="res://Enemy/Orc1/Orc1_death/orc1_death_full.png" id="3_475ft"]
 [ext_resource type="Texture2D" uid="uid://bkgdaphu4r05q" path="res://Enemy/Orc1/Orc1_walk/orc1_walk_full.png" id="3_l6o0r"]
 [ext_resource type="Texture2D" uid="uid://s6snlwyvqsdu" path="res://Enemy/Orc1/Orc1_death/orc1_death_red.png" id="4_sgcda"]
+
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kjb1n"]
 atlas = ExtResource("2_fj2c0")

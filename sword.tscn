@@ -8,7 +8,7 @@ size = Vector2(39, 103)
 [node name="Sword" type="Node2D"]
 
 [node name="Knight" parent="." instance=ExtResource("1_5j18t")]
-max_health = null
+max_health = 100
 
 [node name="HitBox2" type="Area2D" parent="Knight" groups=["hitbox"]]
 
