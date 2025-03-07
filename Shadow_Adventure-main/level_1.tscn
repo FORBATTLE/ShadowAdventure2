@@ -1,10 +1,14 @@
-[gd_scene load_steps=11 format=3 uid="uid://3un0n64s0sib"]
+[gd_scene load_steps=8 format=3 uid="uid://3un0n64s0sib"]
 
+[ext_resource type="PackedScene" uid="uid://cony03g4r26vn" path="res://Player/Knight_1/Knight.tscn" id="1_7k5yt"]
 [ext_resource type="Texture2D" uid="uid://dgp2kyt2vpfhb" path="res://icon.svg" id="2_kp0ur"]
 [ext_resource type="PackedScene" uid="uid://7agne1pfbb3c" path="res://Player/ui.tscn" id="2_nnvn5"]
 [ext_resource type="PackedScene" uid="uid://byy0rnchgmlk0" path="res://Enemy/Orc1/orc_1.tscn" id="4_2ujna"]
+<<<<<<< HEAD
 [ext_resource type="PackedScene" uid="uid://ct0t1nc8rnqn4" path="res://Player/Samurai_Archer/archer.tscn" id="4_qehu4"]
 [ext_resource type="Texture2D" uid="uid://ndnwh4d35b8n" path="res://Shadow_Adventure-main/Nature_environment_01.png" id="5_7jp3e"]
+=======
+>>>>>>> fecba754d95b6b481425044734c24f4910dc62e5
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ysiti"]
 bounce = 30.0
@@ -15,6 +19,7 @@ size = Vector2(974, 86)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m2kvf"]
 size = Vector2(29, 319)
 
+<<<<<<< HEAD
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_uedwq"]
 texture = ExtResource("5_7jp3e")
 7:1/0 = 0
@@ -1073,6 +1078,14 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_uedwq")
 
 [node name="Level 1" type="Node2D"]
+=======
+[node name="Level 1" type="Node2D"]
+
+[node name="Knight" parent="." instance=ExtResource("1_7k5yt")]
+max_health = 100
+attack_damage = 10
+attack_cooldown = 1.5
+>>>>>>> fecba754d95b6b481425044734c24f4910dc62e5
 
 [node name="RigidBody2D" type="StaticBody2D" parent="."]
 physics_material_override = SubResource("PhysicsMaterial_ysiti")
@@ -1100,14 +1113,5 @@ shape = SubResource("RectangleShape2D_m2kvf")
 [node name="StaticBody2D" type="StaticBody2D" parent="StaticBody2D"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D/StaticBody2D"]
-position = Vector2(-8, -47)
+position = Vector2(973, 159)
 shape = SubResource("RectangleShape2D_m2kvf")
-
-[node name="Archer" parent="." instance=ExtResource("4_qehu4")]
-position = Vector2(72, 226)
-
-[node name="TileMap" type="TileMap" parent="."]
-position = Vector2(1010, 347)
-tile_set = SubResource("TileSet_4x8ih")
-format = 2
-layer_0/tile_data = PackedInt32Array(-65538, 65536, 10, -2, 65536, 11, 65534, 65536, 12, -65537, 131072, 10, -1, 131072, 11, 65535, 131072, 12, -131072, 196608, 10, -65536, 196608, 11, 0, 196608, 12, -131071, 262144, 10, -65535, 262144, 11, 1, 262144, 12, -131070, 327680, 10, -65534, 327680, 11, 2, 327680, 12, -131069, 393216, 10, -65533, 393216, 11, 3, 393216, 12, -131068, 458752, 10, -65532, 458752, 11, 4, 458752, 12, -131067, 524288, 10, -65531, 524288, 11, 5, 524288, 12, -131066, 589824, 10, -65530, 589824, 11, 6, 589824, 12, -131065, 655360, 10, -65529, 655360, 11, 7, 655360, 12, -131064, 720896, 10, -65528, 720896, 11, 8, 720896, 12, -131063, 786432, 10, -65527, 786432, 11, 9, 786432, 12, -131062, 851968, 10, -65526, 851968, 11, 10, 851968, 12, -131061, 917504, 10, -65525, 917504, 11, 11, 917504, 12, -131060, 983040, 10, -65524, 983040, 11, 12, 983040, 12, -131059, 1048576, 10, -65523, 1048576, 11, 13, 1048576, 12, -131058, 1114112, 10, -65522, 1114112, 11, 14, 1114112, 12, -131057, 1179648, 10, -65521, 1179648, 11, 15, 1179648, 12, -131056, 1245184, 10, -65520, 1245184, 11, 16, 1245184, 12, -131055, 1310720, 10, -65519, 1310720, 11, 17, 1310720, 12, -131054, 1376256, 10, -65518, 1376256, 11, 18, 1376256, 12, -131053, 1441792, 10, -65517, 1441792, 11, 19, 1441792, 12, -131052, 1507328, 10, -65516, 1507328, 11, 20, 1507328, 12, -131051, 1572864, 10, -65515, 1572864, 11, 21, 1572864, 12)
