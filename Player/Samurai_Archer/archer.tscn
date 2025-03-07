@@ -833,4 +833,3 @@ libraries = {
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(2, 0)
-zoom = Vector2(2, 2)
