@@ -29,7 +29,7 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_cv656"]
 radius = 57.0
 
-[node name="Light_Shield" type="Area2D"]
+[node name="Light_Shield" type="Area2D" groups=["AOE(AREA OF EFFECT)"]]
 script = ExtResource("1_flwwc")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

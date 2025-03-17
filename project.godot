@@ -24,6 +24,7 @@ enabled=PackedStringArray("res://addons/imjp94.yafsm/plugin.cfg")
 Player=""
 Enemies="Any mob"
 Projectiles=""
+"AOE(AREA OF EFFECT)"=""
 
 [input]
 
