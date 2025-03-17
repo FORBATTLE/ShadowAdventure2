@@ -58,6 +58,7 @@ func _physics_process(delta: float) -> void:
 	elif is_moving and not is_shooting:
 		$AnimationPlayer.play(\"Run\")
 	elif not is_moving and not is_shooting:
+		
 		$AnimationPlayer.play(\"Idle\")
 	
 	if Input.is_action_just_pressed(\"ui_accept\") and can_shoot:
