@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://cv4vn1pnprwam" path="res://Player/Wanderer Magican/jordan.tscn" id="1_ttepv"]
 [ext_resource type="PackedScene" uid="uid://byy0rnchgmlk0" path="res://Enemy/Orc1/orc_1.tscn" id="2_tnt8u"]
 
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oxn0k"]
 size = Vector2(1167, 87)
 

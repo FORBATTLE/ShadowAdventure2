@@ -1,0 +1,6 @@
+[gd_scene load_steps=8 format=3 uid="uid://3un0n64s0sib"]
+
+[ext_resource type="PackedScene" uid="uid://cony03g4r26vn" path="res://Player/Knight_1/Knight.tscn" id="1_7k5yt"]
+[ext_resource type="Texture2D" uid="uid://dgp2kyt2vpfhb" path="res://icon.svg" id="2_kp0ur"]
+[ext_resource type="PackedScene" uid="uid://7agne1pfbb3c" path="res://Player/ui.tscn" id="2_nnvn5"]
+[ext_resource type="PackedScene" uid="uid://byy0rnchgmlk0" path="res://Enemy/Orc1/orc_1.tscn" id="4_2ujna"]

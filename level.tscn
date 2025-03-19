@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=4 uid="uid://jn2833im4x12"]
+[gd_scene load_steps=6 format=4 uid="uid://jn2833im4x12"]
 
 [ext_resource type="Texture2D" uid="uid://ndnwh4d35b8n" path="res://Shadow_Adventure-main/Nature_environment_01.png" id="1_5of5q"]
 [ext_resource type="PackedScene" uid="uid://tx6vjm8ah35p" path="res://Player/Samurai_Archer/archer.tscn" id="2_ddsq2"]
+[ext_resource type="PackedScene" uid="uid://byy0rnchgmlk0" path="res://Enemy/Orc1/orc_1.tscn" id="2_kikwr"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6yjxy"]
 texture = ExtResource("1_5of5q")
@@ -1941,4 +1942,7 @@ tile_map_data = PackedByteArray("AAAAAAAAAAABAAcAAAAAAAEAAAABAAgAAAAAAAIAAAABAAk
 tile_set = SubResource("TileSet_ifuje")
 
 [node name="Archer" parent="." instance=ExtResource("2_ddsq2")]
-position = Vector2(7243, -118)
+position = Vector2(119, -138)
+
+[node name="Orc1" parent="." instance=ExtResource("2_kikwr")]
+position = Vector2(390, -23)
