@@ -1,0 +1,143 @@
+[gd_scene load_steps=16 format=3 uid="uid://cwcrxpfmxjxpy"]
+
+[ext_resource type="Script" path="res://Player/Wanderer Magican/Skills/fire/fire.gd" id="1_ltk8u"]
+[ext_resource type="Texture2D" uid="uid://ctn4stou18fkf" path="res://Player/Wanderer Magican/Skills/fire/fire1.png" id="2_jktf4"]
+[ext_resource type="Texture2D" uid="uid://b72l2iql75qyg" path="res://Player/Wanderer Magican/Skills/fire/fire2.png" id="3_gyym6"]
+[ext_resource type="Texture2D" uid="uid://rl0lu2sqmj40" path="res://Player/Wanderer Magican/Skills/fire/fire3.png" id="4_autfc"]
+[ext_resource type="Texture2D" uid="uid://c24g6jffygcf5" path="res://Player/Wanderer Magican/Skills/fire/fire4.png" id="5_34k43"]
+[ext_resource type="Texture2D" uid="uid://crb71y4xpsptv" path="res://Player/Wanderer Magican/Skills/fire/fire5.png" id="6_v4kq7"]
+[ext_resource type="Texture2D" uid="uid://bhflg1ovny38o" path="res://Player/Wanderer Magican/Skills/fire/fire6.png" id="7_n0ud2"]
+[ext_resource type="Texture2D" uid="uid://r6jgl8ceva2v" path="res://Player/Wanderer Magican/Skills/fire/fire7.png" id="8_thec4"]
+[ext_resource type="Texture2D" uid="uid://htolxyebj7w" path="res://Player/Wanderer Magican/Skills/fire/fire8.png" id="9_5rtgy"]
+[ext_resource type="Texture2D" uid="uid://c6y1gvj08kchl" path="res://Player/Wanderer Magican/Skills/fire/fire9.png" id="10_6xx31"]
+[ext_resource type="Texture2D" uid="uid://bpp7pl7lomvhr" path="res://Player/Wanderer Magican/Skills/fire/fire10.png" id="11_n5vp7"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_362db"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_jktf4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_gyym6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_autfc")
+}],
+"loop": false,
+"name": &"Fire",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_34k43")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_v4kq7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_n0ud2")
+}],
+"loop": true,
+"name": &"Flying",
+"speed": 9.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_thec4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_5rtgy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_6xx31")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_n5vp7")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"Impact",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_jktf4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_gyym6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_autfc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_34k43")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_v4kq7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_n0ud2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_thec4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_5rtgy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_6xx31")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_n5vp7")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_73ejc"]
+radius = 45.0111
+
+[sub_resource type="Animation" id="Animation_e48y0"]
+resource_name = "Flying"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.133333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"Flying", 1.0, false],
+"method": &"play"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7u2uf"]
+_data = {
+"Flying": SubResource("Animation_e48y0")
+}
+
+[node name="Fire" type="Area2D"]
+script = ExtResource("1_ltk8u")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." groups=["Projectiles"]]
+sprite_frames = SubResource("SpriteFrames_362db")
+animation = &"Flying"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_73ejc")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_7u2uf")
+}
+autoplay = "Flying"

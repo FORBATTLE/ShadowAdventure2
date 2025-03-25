@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 
 var SPEED = 300.0
-const JUMP_VELOCITY = -400.0
+const JUMP_VELOCITY = -500.0
 ###
 @onready var AP: AnimationPlayer = $AnimationPlayer
 var facing_direction = 1  # 1 = Right, -1 = Left
