@@ -29,7 +29,7 @@ func _process(delta: float) -> void:
 	# Calculate velocity based on the direction
 	velocity.x = direction * speed
 	# Move using the new Godot 4 method
-	var collision_info = move_and_collide(velocity * delta)
+	var collision_info = move_and_collide(Vector2(velocity.x * delta, 0))
 	
 	# Optional: Detect collision and change direction if colliding with a wall
 	if collision_info:
@@ -65,6 +65,8 @@ func die() -> void:
 		return  # Prevent multiple death triggers
 
 	is_dying = true
+	if is_dying == true:
+		is_attacking = false
 	$AnimationPlayer.play("O1 Die")
 
 	# Queue free after death animation finishes
