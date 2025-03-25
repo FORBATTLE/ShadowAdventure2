@@ -392,8 +392,6 @@ script = ExtResource("1_587oy")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." groups=["Enemies"]]
 sprite_frames = SubResource("SpriteFrames_nbik5")
 animation = &"Orc1 Attack"
-frame = 7
-frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.23825, -4.52999)
@@ -411,6 +409,6 @@ libraries = {
 "": SubResource("AnimationLibrary_rtnq7")
 }
 
-[connection signal="body_entered" from="AttackRange" to="." method="_on_attack_range_body_entered"]
 [connection signal="body_entered" from="AttackRange" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="AttackRange" to="." method="_on_attack_range_body_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

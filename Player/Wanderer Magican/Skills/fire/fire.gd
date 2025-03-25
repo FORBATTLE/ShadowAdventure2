@@ -1,7 +1,7 @@
 extends Area2D
 var speed = 200
 var speed_mod = 1.5
-var direction = Vector2.ONE
+var direction = Vector2.RIGHT
 @export var damage: int = 15 
 var queued_dmg = 0.0
 var dmg_speed = 1.0

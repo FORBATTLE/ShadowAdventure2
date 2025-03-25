@@ -1,4 +1,4 @@
-[gd_scene load_steps=90 format=3 uid="uid://cv4vn1pnprwam"]
+[gd_scene load_steps=89 format=3 uid="uid://cv4vn1pnprwam"]
 
 [ext_resource type="Texture2D" uid="uid://cfe75ey5qxt6h" path="res://Player/Wanderer Magican/Attack_1.png" id="1_vufiu"]
 [ext_resource type="Texture2D" uid="uid://bpqxxkocf2ln8" path="res://Player/Wanderer Magican/Attack_2.png" id="2_7fc2c"]
@@ -22,6 +22,26 @@ const JUMP_VELOCITY = -400.0
 @export var ICE_SHOT = preload(\"res://Player/Wanderer Magican/Skills/ice/ice_shot.tscn\")
 @export var Water_Gun = preload(\"res://Player/Wanderer Magican/Skills/water/water_gun.tscn\")
 @export var Light_Shield = preload(\"res://Player/Wanderer Magican/Skills/light/light_shield.tscn\")
+@export var Flame_thrower = preload(\"res://Player/Wanderer Magican/Skills/fire/Fire.tscn\")
+@export var max_health: int = 100
+var current_health: int
+var health_bar: TextureProgressBar
+var shoot_timer 
+func _ready():
+	# Create and configure the timer
+	shoot_timer = Timer.new()
+	shoot_timer.wait_time = 0.5  # 0.5-second delay
+	shoot_timer.one_shot = true
+	shoot_timer.timeout.connect(_reset_shoot)
+	add_child(shoot_timer)
+	current_health = max_health
+	health_bar = get_node(\"UI/TextureProgressBar\") # Adjust the path as needed
+	update_health_bar()
+
+
+
+
+
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	# Add the gravity.
@@ -62,26 +82,33 @@ func _physics_process(delta: float) -> void:
 		$AnimationPlayer.play(\"Idle\")
 	
 	if Input.is_action_just_pressed(\"ui_accept\") and can_shoot:
-		spell_ice()
+		
 		play_shoot_animation()
 		
-		spell_light()
+		spell_ice()
 		pass
 	
 	
 	move_and_slide()
 
+#if Input.is_action_just_pressed(\"Spell(fire)\"):
+		#var Ice_projectile = ICE_SHOT.instantiate()
+		#var Ice_vec = $\"Target point\".global_position - global_position
+		#Ice_vec = Ice_vec.normalized()
+		#Ice_projectile.direction = Ice_vec
+		#Ice_projectile.global_position = $\"Target point\".global_position
+		#Ice_projectile.rotation = rotation
+		#get_tree().get_root().add_child(Ice_projectile)
+		#play_shoot_animation()
 
 func spell_ice():
-	if Input.is_action_just_pressed(\"Spell(fire)\"):
-		var Ice_projectile = ICE_SHOT.instantiate()
-		var Ice_vec = $\"Target point\".global_position - global_position
-		Ice_vec = Ice_vec.normalized()
-		Ice_projectile.direction = Ice_vec
-		Ice_projectile.global_position = $\"Target point\".global_position
-		Ice_projectile.rotation = rotation
-		get_tree().get_root().add_child(Ice_projectile)
-		play_shoot_animation()
+	can_shoot = false  # Prevent shooting until cooldown ends
+	shoot_timer.start()  # Start cooldown timer
+	var new_spell = ICE_SHOT.instantiate()
+	var spawn_offset = Vector2(-25, 0) if facing_direction == 1 else Vector2(-150, 0)#Left dir
+	new_spell.position = $\"Target point\".global_position + spawn_offset  # Spawn at a specified node (GunPoint)
+	new_spell.set_direction(facing_direction)  # Call the function to set direction
+	get_parent().add_child(new_spell)
 
 func spell_light():
 	if Input.is_action_just_pressed(\"Spell(area)\"):
@@ -92,10 +119,6 @@ func spell_light():
 		Light_area.global_position = $\"Target point\".global_position
 		Light_area.rotation = rotation
 		get_tree().get_root().add_child(Light_area)
-
-
-
-
 
 func spell_water():
 	if Input.is_action_just_pressed(\"Spell(fire)\"):
@@ -118,6 +141,49 @@ func play_shoot_animation():
 
 func _reset_shoot():
 	can_shoot = true
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+func take_damage(amount: int):
+	# Reduce health by the damage amount
+	current_health -= amount
+	current_health = clamp(current_health, 0, max_health)  # Ensure it doesn’t go below 0
+	update_health_bar()
+	if current_health <= 0:
+		die()
+	else:
+		set_physics_process(false)  
+		set_process(false)
+		$AnimationPlayer.stop()
+		$AnimationPlayer.play(\"Damaged\")
+		await $AnimationPlayer.animation_finished
+		set_physics_process(true)  
+		set_process(true)
+
+func die():
+	set_physics_process(false)
+	set_process(false)
+	animation_player.play(\"Death\")
+	await $AnimationPlayer.animation_finished
+	# Handle player death (e.g., play animation, reset level)
+	print(\"Player has died!\")
+	# Optionally, restart the scene or disable player controls
+	get_tree().reload_current_scene()
+
+func update_health_bar():
+	if health_bar:
+		health_bar.value = current_health
 "
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2ght7"]
@@ -669,9 +735,6 @@ animations = [{
 radius = 22.0
 height = 82.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_w8ugk"]
-radius = 43.0
-
 [sub_resource type="Animation" id="Animation_s47jc"]
 resource_name = "Firing_Spell"
 tracks/0/type = "method"
@@ -763,12 +826,6 @@ frame_progress = 1.0
 position = Vector2(-18, 8)
 shape = SubResource("CapsuleShape2D_n7mqv")
 
-[node name="Area2D" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-18, 8)
-shape = SubResource("CircleShape2D_w8ugk")
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_fjkui")
@@ -776,3 +833,5 @@ libraries = {
 
 [node name="Target point" type="Marker2D" parent="."]
 position = Vector2(52.6726, 0.780335)
+
+[node name="Timer" type="Timer" parent="."]
