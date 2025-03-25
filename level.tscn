@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=4 uid="uid://jn2833im4x12"]
+[gd_scene load_steps=6 format=4 uid="uid://tgnqopmf6qbf"]
 
 [ext_resource type="Texture2D" uid="uid://ndnwh4d35b8n" path="res://Shadow_Adventure-main/Nature_environment_01.png" id="1_5of5q"]
 [ext_resource type="PackedScene" uid="uid://tx6vjm8ah35p" path="res://Player/Samurai_Archer/archer.tscn" id="2_ddsq2"]

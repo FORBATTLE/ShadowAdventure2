@@ -1,6 +1,6 @@
 [gd_scene load_steps=53 format=3 uid="uid://byy0rnchgmlk0"]
 
-[ext_resource type="Script" path="res://Enemy/Orc1/orc_1.gd" id="1_587oy"]
+[ext_resource type="Script" path="res://orc_1.gd" id="1_587oy"]
 [ext_resource type="Texture2D" uid="uid://dh22glorik4ps" path="res://Enemy/Orc1/Orc1_attack/orc1_attack_full.png" id="2_fj2c0"]
 [ext_resource type="Texture2D" uid="uid://2qxeqi677rhx" path="res://Enemy/Orc1/Orc1_idle/orc1_idle_full.png" id="2_o4wow"]
 [ext_resource type="Texture2D" uid="uid://c2bwmnulv8efn" path="res://Enemy/Orc1/Orc1_hurt/orc1_hurt_full.png" id="2_uepao"]
@@ -392,8 +392,6 @@ script = ExtResource("1_587oy")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." groups=["Enemies"]]
 sprite_frames = SubResource("SpriteFrames_nbik5")
 animation = &"Orc1 Attack"
-frame = 7
-frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.23825, -4.52999)
