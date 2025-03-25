@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 
-const SPEED = 300.0
+const SPEED = 500.0
 const JUMP_VELOCITY = -600.0
 
 
@@ -82,7 +82,11 @@ func slash():
 func play_slash_animation():
 	is_slashing = true
 	AP.play("Attack")
-
+func _on_hit_box_body_entered(body: Node2D) -> void:
+	if body is CharacterBody2D and body.has_method("take_damage") and body.is_in_group("Enemies"):
+		body.take_damage(attack_damage)
+		print("Damage dealt to enemy")
+	pass # Replace with function body.
 	# Set a timer to reset shooting state after 0.5 seconds
 	await get_tree().create_timer(1).timeout  # Wait for half the attack animation time
 	is_slashing = false
@@ -90,13 +94,8 @@ func play_slash_animation():
 
 # Timer callback to handle attack cooldown
 func _on_attack_timer_timeout():
-	can_slash = true  # Allow slashing again after cooldown
+	can_slash = true  # Allow slashing again after cooldown 
 
-# Function to handle collision detection and apply damage to enemies
-func _on_body_entered(body: Node2D) -> void:
-	if body is CharacterBody2D and body.has_method("take_damage") and body.is_in_group("Enemies"):
-		body.take_damage(attack_damage)
-		print("Damage dealt to enemy")
 
 func take_damage(amount: int): 
 	# Reduce health by the damage amount
