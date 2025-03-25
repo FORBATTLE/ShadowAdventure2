@@ -204,9 +204,7 @@ script = ExtResource("1_mjc7o")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." groups=["Projectiles"]]
 sprite_frames = SubResource("SpriteFrames_4l6sx")
-animation = &"Impact"
-frame = 8
-frame_progress = 1.0
+animation = &"Flying"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(15, 0)
