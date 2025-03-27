@@ -366,7 +366,7 @@ radius = 22.0
 
 [node name="Slime_lava" type="CharacterBody2D" groups=["Enemies"]]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." groups=["Enemies"]]
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_reh2b")
 animation = &"Attack"
