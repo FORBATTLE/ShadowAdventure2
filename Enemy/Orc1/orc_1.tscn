@@ -285,7 +285,7 @@ animations = [{
 size = Vector2(19.5365, 29.06)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k5jrq"]
-size = Vector2(35.2609, 37.6475)
+size = Vector2(27.1605, 33.3549)
 
 [sub_resource type="Animation" id="Animation_0j216"]
 resource_name = "O1 Attack"
@@ -388,10 +388,11 @@ _data = {
 [node name="Orc1" type="CharacterBody2D" groups=["Enemies"]]
 scale = Vector2(2.09864, 2.09864)
 script = ExtResource("1_587oy")
+health = 16
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." groups=["Enemies"]]
 sprite_frames = SubResource("SpriteFrames_nbik5")
-animation = &"Orc1 Attack"
+animation = &"Orc1 Run"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.23825, -4.52999)
@@ -400,7 +401,8 @@ shape = SubResource("RectangleShape2D_8vlwq")
 [node name="AttackRange" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange"]
-position = Vector2(1.906, -11.6762)
+position = Vector2(1.906, -7.62398)
+scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_k5jrq")
 debug_color = Color(0.998761, 0, 0.133327, 0.42)
 

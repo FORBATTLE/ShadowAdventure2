@@ -1,4 +1,4 @@
-[gd_scene load_steps=89 format=3 uid="uid://cv4vn1pnprwam"]
+[gd_scene load_steps=91 format=3 uid="uid://cv4vn1pnprwam"]
 
 [ext_resource type="Texture2D" uid="uid://cfe75ey5qxt6h" path="res://Player/Wanderer Magican/Attack_1.png" id="1_vufiu"]
 [ext_resource type="Texture2D" uid="uid://bpqxxkocf2ln8" path="res://Player/Wanderer Magican/Attack_2.png" id="2_7fc2c"]
@@ -13,20 +13,32 @@
 [sub_resource type="GDScript" id="GDScript_q4etk"]
 script/source = "extends CharacterBody2D
 var facing_direction = 1  # 1 = Right, -1 = Left
+
 var is_moving = false
+
 var is_shooting = false
+
 var can_shoot = true
+
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+
 const SPEED = 300.0
-const JUMP_VELOCITY = -400.0
+
+const JUMP_VELOCITY = -550.0
+
 @export var ICE_SHOT = preload(\"res://Player/Wanderer Magican/Skills/ice/ice_shot.tscn\")
 @export var Water_Gun = preload(\"res://Player/Wanderer Magican/Skills/water/water_gun.tscn\")
 @export var Light_Shield = preload(\"res://Player/Wanderer Magican/Skills/light/light_shield.tscn\")
 @export var Flame_thrower = preload(\"res://Player/Wanderer Magican/Skills/fire/Fire.tscn\")
+
 @export var max_health: int = 100
+
 var current_health: int
+
 var health_bar: TextureProgressBar
+
 var shoot_timer 
+
 func _ready():
 	# Create and configure the timer
 	shoot_timer = Timer.new()
@@ -85,7 +97,7 @@ func _physics_process(delta: float) -> void:
 		
 		play_shoot_animation()
 		
-		spell_ice()
+		spell_fire()
 		pass
 	
 	
@@ -105,6 +117,15 @@ func spell_ice():
 	can_shoot = false  # Prevent shooting until cooldown ends
 	shoot_timer.start()  # Start cooldown timer
 	var new_spell = ICE_SHOT.instantiate()
+	var spawn_offset = Vector2(-25, 0) if facing_direction == 1 else Vector2(-150, 0)#Left dir
+	new_spell.position = $\"Target point\".global_position + spawn_offset  # Spawn at a specified node (GunPoint)
+	new_spell.set_direction(facing_direction)  # Call the function to set direction
+	get_parent().add_child(new_spell)
+
+func spell_fire():
+	can_shoot = false  # Prevent shooting until cooldown ends
+	shoot_timer.start()  # Start cooldown timer
+	var new_spell = Flame_thrower.instantiate()
 	var spawn_offset = Vector2(-25, 0) if facing_direction == 1 else Vector2(-150, 0)#Left dir
 	new_spell.position = $\"Target point\".global_position + spawn_offset  # Spawn at a specified node (GunPoint)
 	new_spell.set_direction(facing_direction)  # Call the function to set direction
@@ -174,7 +195,7 @@ func take_damage(amount: int):
 func die():
 	set_physics_process(false)
 	set_process(false)
-	animation_player.play(\"Death\")
+	animation_player.play(\"Dead\")
 	await $AnimationPlayer.animation_finished
 	# Handle player death (e.g., play animation, reset level)
 	print(\"Player has died!\")
@@ -250,37 +271,37 @@ region = Rect2(896, 49, 128, 79)
 atlas = ExtResource("2_7fc2c")
 region = Rect2(1024, 49, 128, 79)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_l80hu"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_v4max"]
 atlas = ExtResource("3_4mrjg")
-region = Rect2(0, 0, 128, 128)
+region = Rect2(0, 48, 127, 80)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_y4bi8"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_6vam5"]
 atlas = ExtResource("3_4mrjg")
-region = Rect2(128, 0, 128, 128)
+region = Rect2(127, 48, 127, 80)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_l2jpp"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_rodjf"]
 atlas = ExtResource("3_4mrjg")
-region = Rect2(256, 0, 128, 128)
+region = Rect2(254, 48, 127, 80)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_y6mkv"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_73gr5"]
 atlas = ExtResource("3_4mrjg")
-region = Rect2(384, 0, 128, 128)
+region = Rect2(381, 48, 127, 80)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_i0bmd"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_gry2s"]
 atlas = ExtResource("4_n1cpc")
-region = Rect2(0, 0, 128, 128)
+region = Rect2(0, 45, 127, 83)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_qcrlb"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_tdcgj"]
 atlas = ExtResource("4_n1cpc")
-region = Rect2(128, 0, 128, 128)
+region = Rect2(127, 45, 127, 83)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_jyn8t"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_fwlu1"]
 atlas = ExtResource("4_n1cpc")
-region = Rect2(256, 0, 128, 128)
+region = Rect2(254, 45, 127, 83)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ynspa"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_olfy0"]
 atlas = ExtResource("4_n1cpc")
-region = Rect2(384, 0, 128, 128)
+region = Rect2(381, 45, 127, 83)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pny07"]
 atlas = ExtResource("5_x8wae")
@@ -532,37 +553,37 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_l80hu")
+"texture": SubResource("AtlasTexture_v4max")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_y4bi8")
+"texture": SubResource("AtlasTexture_6vam5")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_l2jpp")
+"texture": SubResource("AtlasTexture_rodjf")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_y6mkv")
+"texture": SubResource("AtlasTexture_73gr5")
 }],
-"loop": true,
+"loop": false,
 "name": &"damaged",
-"speed": 5.0
+"speed": 7.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_i0bmd")
+"texture": SubResource("AtlasTexture_gry2s")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_qcrlb")
+"texture": SubResource("AtlasTexture_tdcgj")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_jyn8t")
+"texture": SubResource("AtlasTexture_fwlu1")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ynspa")
+"texture": SubResource("AtlasTexture_olfy0")
 }],
-"loop": true,
+"loop": false,
 "name": &"died",
-"speed": 6.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -731,9 +752,8 @@ animations = [{
 "speed": 7.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_n7mqv"]
-radius = 22.0
-height = 82.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2sywv"]
+size = Vector2(56, 76)
 
 [sub_resource type="Animation" id="Animation_s47jc"]
 resource_name = "Firing_Spell"
@@ -803,8 +823,44 @@ tracks/0/keys = {
 }]
 }
 
+[sub_resource type="Animation" id="Animation_1s20u"]
+resource_name = "Damaged"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"damaged", 1.0, false],
+"method": &"play"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_rq04j"]
+resource_name = "Dead"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"died", 1.0, false],
+"method": &"play"
+}]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fjkui"]
 _data = {
+"Damaged": SubResource("Animation_1s20u"),
+"Dead": SubResource("Animation_rq04j"),
 "Firing_Spell": SubResource("Animation_s47jc"),
 "Idle": SubResource("Animation_4aktx"),
 "Jump": SubResource("Animation_ffejb"),
@@ -816,15 +872,15 @@ script = SubResource("GDScript_q4etk")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-position = Vector2(0, -0.390168)
+position = Vector2(-12, 5)
 sprite_frames = SubResource("SpriteFrames_mnpmp")
-animation = &"attack_2"
-frame = 8
+animation = &"damaged"
+frame = 3
 frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["Player"]]
-position = Vector2(-18, 8)
-shape = SubResource("CapsuleShape2D_n7mqv")
+position = Vector2(-6, 12)
+shape = SubResource("RectangleShape2D_2sywv")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -835,3 +891,5 @@ libraries = {
 position = Vector2(52.6726, 0.780335)
 
 [node name="Timer" type="Timer" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="."]

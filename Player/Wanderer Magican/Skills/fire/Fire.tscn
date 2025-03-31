@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cwcrxpfmxjxpy"]
+[gd_scene load_steps=26 format=3 uid="uid://cwcrxpfmxjxpy"]
 
 [ext_resource type="Script" path="res://Player/Wanderer Magican/Skills/fire/fire.gd" id="1_ltk8u"]
 [ext_resource type="Texture2D" uid="uid://ctn4stou18fkf" path="res://Player/Wanderer Magican/Skills/fire/fire1.png" id="2_jktf4"]
@@ -12,17 +12,57 @@
 [ext_resource type="Texture2D" uid="uid://c6y1gvj08kchl" path="res://Player/Wanderer Magican/Skills/fire/fire9.png" id="10_6xx31"]
 [ext_resource type="Texture2D" uid="uid://bpp7pl7lomvhr" path="res://Player/Wanderer Magican/Skills/fire/fire10.png" id="11_n5vp7"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_db8cg"]
+atlas = ExtResource("2_jktf4")
+region = Rect2(0, 52, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dni6s"]
+atlas = ExtResource("3_gyym6")
+region = Rect2(0, 52, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3q658"]
+atlas = ExtResource("4_autfc")
+region = Rect2(0, 52, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j0ss0"]
+atlas = ExtResource("5_34k43")
+region = Rect2(0, 52, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i5x45"]
+atlas = ExtResource("6_v4kq7")
+region = Rect2(0, 52, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g66yt"]
+atlas = ExtResource("7_n0ud2")
+region = Rect2(0, 52, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xxroo"]
+atlas = ExtResource("8_thec4")
+region = Rect2(0, 48, 128, 66)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_odyxg"]
+atlas = ExtResource("9_5rtgy")
+region = Rect2(0, 29, 128, 79)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jeyl6"]
+atlas = ExtResource("10_6xx31")
+region = Rect2(0, 16, 128, 92)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eahy5"]
+atlas = ExtResource("11_n5vp7")
+region = Rect2(0, 16, 128, 92)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_362db"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_jktf4")
+"texture": SubResource("AtlasTexture_db8cg")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_gyym6")
+"texture": SubResource("AtlasTexture_dni6s")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_autfc")
+"texture": SubResource("AtlasTexture_3q658")
 }],
 "loop": false,
 "name": &"Fire",
@@ -30,13 +70,13 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("5_34k43")
+"texture": SubResource("AtlasTexture_j0ss0")
 }, {
 "duration": 1.0,
-"texture": ExtResource("6_v4kq7")
+"texture": SubResource("AtlasTexture_i5x45")
 }, {
 "duration": 1.0,
-"texture": ExtResource("7_n0ud2")
+"texture": SubResource("AtlasTexture_g66yt")
 }],
 "loop": true,
 "name": &"Flying",
@@ -44,16 +84,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("8_thec4")
+"texture": SubResource("AtlasTexture_xxroo")
 }, {
 "duration": 1.0,
-"texture": ExtResource("9_5rtgy")
+"texture": SubResource("AtlasTexture_odyxg")
 }, {
 "duration": 1.0,
-"texture": ExtResource("10_6xx31")
+"texture": SubResource("AtlasTexture_jeyl6")
 }, {
 "duration": 1.0,
-"texture": ExtResource("11_n5vp7")
+"texture": SubResource("AtlasTexture_eahy5")
 }, {
 "duration": 1.0,
 "texture": null
@@ -131,9 +171,12 @@ script = ExtResource("1_ltk8u")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." groups=["Projectiles"]]
 sprite_frames = SubResource("SpriteFrames_362db")
-animation = &"Flying"
+animation = &"Impact"
+frame = 4
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2, -4)
 shape = SubResource("CircleShape2D_73ejc")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -141,3 +184,5 @@ libraries = {
 "": SubResource("AnimationLibrary_7u2uf")
 }
 autoplay = "Flying"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
