@@ -103,7 +103,7 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 
 func _on_attack_range_body_entered(body: Node2D) -> void:
 	print("Detected body:", body.name)
-	if body.name == "Archer" or body.name == "Knight" or body.name == "jordan" and not is_attacking:
+	if body.name == "Archer" or body.name == "Knight" or body.name == "Jordan" and not is_attacking:
 		print("Attacking player!")
 		start_attack(body)
 	pass # Replace with function body.
