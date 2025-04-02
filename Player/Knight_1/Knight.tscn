@@ -1,4 +1,4 @@
-[gd_scene load_steps=91 format=3 uid="uid://cony03g4r26vn"]
+[gd_scene load_steps=92 format=3 uid="uid://cony03g4r26vn"]
 
 [ext_resource type="Script" path="res://Player/Knight_1/Knight.gd" id="1_65yeq"]
 [ext_resource type="Texture2D" uid="uid://dd4omf3i65g3q" path="res://Player/Knight_1/Attack 1.png" id="1_ulwjp"]
@@ -16,6 +16,7 @@
 [ext_resource type="Script" path="res://addons/imjp94.yafsm/src/transitions/Transition.gd" id="13_svyjm"]
 [ext_resource type="Script" path="res://addons/imjp94.yafsm/src/conditions/Condition.gd" id="14_jgylp"]
 [ext_resource type="Script" path="res://addons/imjp94.yafsm/src/conditions/IntegerCondition.gd" id="15_3keme"]
+[ext_resource type="AudioStream" uid="uid://depbdoih5artf" path="res://Player/Knight_1/audiomass-output (4).mp3" id="17_qai3m"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g50bb"]
 size = Vector2(68, 92.5)
@@ -644,6 +645,7 @@ _data = {
 }
 
 [node name="Knight" type="CharacterBody2D"]
+position = Vector2(-15, -93)
 floor_block_on_wall = false
 script = ExtResource("1_65yeq")
 
@@ -655,9 +657,9 @@ shape = SubResource("RectangleShape2D_g50bb")
 position = Vector2(13, 86)
 sprite_frames = SubResource("SpriteFrames_qjh74")
 animation = &"WA"
-frame_progress = 0.230946
 
 [node name="HitBox" type="Area2D" parent="."]
+position = Vector2(4, 2)
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="HitBox"]
 light_mask = 2
@@ -676,6 +678,10 @@ libraries = {
 }
 
 [node name="attack_timer" type="Timer" parent="."]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("17_qai3m")
+volume_db = 8.4
 
 [connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]
 [connection signal="timeout" from="attack_timer" to="." method="_on_attack_timer_timeout"]

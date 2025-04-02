@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://depbdoih5artf"
+path="res://.godot/imported/audiomass-output (4).mp3-e4015d1974d7d329f249b4b32e0ac7e5.mp3str"
+
+[deps]
+
+source_file="res://Player/Knight_1/audiomass-output (4).mp3"
+dest_files=["res://.godot/imported/audiomass-output (4).mp3-e4015d1974d7d329f249b4b32e0ac7e5.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
