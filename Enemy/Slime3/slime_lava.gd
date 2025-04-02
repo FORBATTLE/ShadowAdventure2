@@ -1,12 +1,13 @@
 extends CharacterBody2D
+
 @export var speed: float = 100.0  # Movement speed
 var direction: int = 1  # 1 for right, -1 for left
 @export var health: int = 3
 var is_dying: bool = false
 var is_playing_damage_animation: bool = false  # To track if damage animation is active
-var current_animation: String = "O1Run"  # Tracks the current animation
-@export var attack_damage: int = 10  # Damage dealt to the player
-@export var attack_cooldown: float = 1.5  # Cooldown time between attacks
+var current_animation: String = "Run"  # Tracks the current animation
+@export var attack_damage: int = 35  # Damage dealt to the player
+@export var attack_cooldown: float = 3  # Cooldown time between attacks
 var is_attacking: bool = false
 var attack_timer: Timer = Timer.new()
 
@@ -18,7 +19,7 @@ func _ready() -> void:
 	pass # Replace with function body.
 
 func _on_animation_finished(name: String) -> void:
-	if name == "O1 Attack":
+	if name == "Attack":
 		is_attacking = false
 
 func _process(delta: float) -> void:
@@ -39,10 +40,11 @@ func _process(delta: float) -> void:
 	if is_playing_damage_animation:
 		return
 	
+	
 	if direction != 0:
-		play_animation("O1Run")
+		play_animation("Run")
 	else:
-		play_animation("O1Idle")
+		play_animation("Idle")
 
 func change_direction() -> void:
 	direction *= -1  # Reverse direction
@@ -51,11 +53,11 @@ func change_direction() -> void:
 func take_damage(amount: int) -> void:
 	health -= amount
 	if health > 0:
-		if $AnimationPlayer.has_animation("O1 Damaged"):
+		if $AnimationPlayer.has_animation("Hurt"):
 			is_playing_damage_animation = true
-			current_animation = "O1Run"
+			current_animation = "Run"
 			$AnimationPlayer.stop()  # Stop any current animation
-			$AnimationPlayer.play("O1 Damaged")
+			$AnimationPlayer.play("Hurt")
 			print("Taking damage!")
 	else:
 		die()
@@ -65,17 +67,17 @@ func die() -> void:
 		return  # Prevent multiple death triggers
 
 	is_dying = true
-	$AnimationPlayer.play("O1 Die")
+	$AnimationPlayer.play("Death")
 
 	# Queue free after death animation finishes
 	$AnimationPlayer.animation_finished.connect(self._on_death_animation_finished)
 	
 func _on_death_animation_finished(name: String) -> void:
-	if name == "O1 Die":
+	if name == "Death":
 		queue_free()
 	
 func _on_damage_animation_finished(name: String) -> void:
-	if name == "O1 Damaged":
+	if name == "Hurt":
 		is_playing_damage_animation = false
 		play_animation(current_animation)  # Resume the previous animation
 	
@@ -90,14 +92,14 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 
 func start_attack(target: Node) -> void:
 	is_attacking = true
-	$AnimationPlayer.play("O1 Attack")
+	$AnimationPlayer.play("Attack")
 	attack_timer.start()  # Start cooldown timer
 	if target.has_method("take_damage"):
 		target.take_damage(attack_damage)
 func _on_attack_timer_timeout() -> void:
 	is_attacking = false
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
-	play_animation("O1Run")
+	play_animation("Run")
 	pass # Replace with function body.
 
 
