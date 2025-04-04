@@ -201,6 +201,7 @@ _data = {
 
 [node name="Ice_shot" type="Area2D" groups=["Projectile"]]
 script = ExtResource("1_mjc7o")
+damage = 10
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." groups=["Projectiles"]]
 sprite_frames = SubResource("SpriteFrames_4l6sx")

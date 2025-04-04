@@ -15,9 +15,13 @@ run/main_scene="res://level.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+StatusEffectManager="*res://addons/jbs_hitzone_node/status_effects/jbs_status_effect_manager.gd"
+
 [editor_plugins]
 
-enabled=PackedStringArray()
+enabled=PackedStringArray("res://addons/imjp94.yafsm/plugin.cfg", "res://addons/jbs_hitzone_node/plugin.cfg")
 
 [global_group]
 

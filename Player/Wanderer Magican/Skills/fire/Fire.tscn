@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://cwcrxpfmxjxpy"]
+[gd_scene load_steps=27 format=3 uid="uid://cwcrxpfmxjxpy"]
 
 [ext_resource type="Script" path="res://Player/Wanderer Magican/Skills/fire/fire.gd" id="1_ltk8u"]
 [ext_resource type="Texture2D" uid="uid://ctn4stou18fkf" path="res://Player/Wanderer Magican/Skills/fire/fire1.png" id="2_jktf4"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://htolxyebj7w" path="res://Player/Wanderer Magican/Skills/fire/fire8.png" id="9_5rtgy"]
 [ext_resource type="Texture2D" uid="uid://c6y1gvj08kchl" path="res://Player/Wanderer Magican/Skills/fire/fire9.png" id="10_6xx31"]
 [ext_resource type="Texture2D" uid="uid://bpp7pl7lomvhr" path="res://Player/Wanderer Magican/Skills/fire/fire10.png" id="11_n5vp7"]
+[ext_resource type="Script" path="res://addons/jbs_hitzone_node/jbs_hitzone.gd" id="12_rc3qi"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_db8cg"]
 atlas = ExtResource("2_jktf4")
@@ -184,5 +185,10 @@ libraries = {
 "": SubResource("AnimationLibrary_7u2uf")
 }
 autoplay = "Flying"
+
+[node name="HitZone" type="Node" parent="." node_paths=PackedStringArray("area_2d")]
+script = ExtResource("12_rc3qi")
+area_2d = NodePath("..")
+monitor_on_ready = true
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

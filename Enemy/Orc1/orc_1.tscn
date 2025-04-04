@@ -402,7 +402,6 @@ shape = SubResource("RectangleShape2D_8vlwq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange"]
 position = Vector2(1.906, -7.62398)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_k5jrq")
 debug_color = Color(0.998761, 0, 0.133327, 0.42)
 

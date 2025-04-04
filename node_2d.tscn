@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bvw1flv4mbmps"]
+[gd_scene load_steps=6 format=3 uid="uid://bvw1flv4mbmps"]
 
 [ext_resource type="PackedScene" uid="uid://cv4vn1pnprwam" path="res://Player/Wanderer Magican/jordan.tscn" id="1_2qvaj"]
 [ext_resource type="PackedScene" uid="uid://byy0rnchgmlk0" path="res://Enemy/Orc1/orc_1.tscn" id="2_lrc4q"]
+[ext_resource type="PackedScene" uid="uid://dtqw8t7kvtdrd" path="res://Enemy/Slime3/slime_lava.tscn" id="3_hbfvv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_txj5d"]
 size = Vector2(1175, 165.5)
@@ -26,4 +27,7 @@ shape = SubResource("RectangleShape2D_sufxj")
 position = Vector2(161, 225)
 
 [node name="Orc1" parent="." instance=ExtResource("2_lrc4q")]
-position = Vector2(473, 263)
+position = Vector2(318, 274)
+
+[node name="Slime_lava" parent="." instance=ExtResource("3_hbfvv")]
+position = Vector2(560, 276)
