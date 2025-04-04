@@ -1,4 +1,4 @@
-[gd_scene load_steps=92 format=3 uid="uid://cony03g4r26vn"]
+[gd_scene load_steps=93 format=3 uid="uid://cony03g4r26vn"]
 
 [ext_resource type="Script" path="res://Player/Knight_1/Knight.gd" id="1_65yeq"]
 [ext_resource type="Texture2D" uid="uid://dd4omf3i65g3q" path="res://Player/Knight_1/Attack 1.png" id="1_ulwjp"]
@@ -17,6 +17,7 @@
 [ext_resource type="Script" path="res://addons/imjp94.yafsm/src/conditions/Condition.gd" id="14_jgylp"]
 [ext_resource type="Script" path="res://addons/imjp94.yafsm/src/conditions/IntegerCondition.gd" id="15_3keme"]
 [ext_resource type="AudioStream" uid="uid://depbdoih5artf" path="res://Player/Knight_1/audiomass-output (4).mp3" id="17_qai3m"]
+[ext_resource type="AudioStream" uid="uid://bk3ocdhrb7dmh" path="res://Player/Knight_1/dripping-water-in-cave-114694.mp3" id="18_kvomf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g50bb"]
 size = Vector2(68, 92.5)
@@ -682,6 +683,9 @@ libraries = {
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("17_qai3m")
 volume_db = 8.4
+
+[node name="Cave level" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("18_kvomf")
 
 [connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]
 [connection signal="timeout" from="attack_timer" to="." method="_on_attack_timer_timeout"]
