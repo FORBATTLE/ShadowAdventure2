@@ -13,6 +13,7 @@ var is_shooting = false
 var current_health: int
 var health_bar: TextureProgressBar
 
+
 ##
 @export var arrow = preload("res://Player/Samurai_Archer/arrow.tscn")
 var can_shoot = true

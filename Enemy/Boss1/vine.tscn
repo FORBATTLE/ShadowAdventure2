@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://dowowbpu28tm7"]
+
+[ext_resource type="Script" path="res://vine.gd" id="1_6b1ee"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wkwxb"]
+size = Vector2(69, 20)
+
+[node name="Vine" type="Area2D"]
+script = ExtResource("1_6b1ee")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(24.5, 0)
+shape = SubResource("RectangleShape2D_wkwxb")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
