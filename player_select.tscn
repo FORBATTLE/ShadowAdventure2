@@ -79,9 +79,9 @@ scale = Vector2(4.29905, 3.79261)
 texture = ExtResource("6_lnc4n")
 
 [node name="Label" type="Label" parent="Sprite2D"]
-offset_left = -83.7394
-offset_top = -73.8279
-offset_right = 63.2606
-offset_bottom = -50.8279
+offset_left = -86.0655
+offset_top = -80.4196
+offset_right = 78.9345
+offset_bottom = -35.4196
 text = "Shadow Adventure"
 label_settings = SubResource("LabelSettings_csu0f")

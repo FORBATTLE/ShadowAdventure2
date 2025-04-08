@@ -1,0 +1,299 @@
+[gd_scene load_steps=36 format=3 uid="uid://cv72juel8m2wd"]
+
+[ext_resource type="Texture2D" uid="uid://dfx5ywg1ggrqm" path="res://Enemy/Demon Spritesheet/Attack.png" id="1_6d67g"]
+[ext_resource type="Script" path="res://Enemy/demon.gd" id="1_aufhr"]
+[ext_resource type="Texture2D" uid="uid://dp5k7i662jao8" path="res://Enemy/Demon Spritesheet/Damage.png" id="2_j0fjl"]
+[ext_resource type="Texture2D" uid="uid://ddmehonu0cs2c" path="res://Enemy/Demon Spritesheet/Death.png" id="3_p4w5p"]
+[ext_resource type="Texture2D" uid="uid://tyctdcwa3f6b" path="res://Enemy/Demon Spritesheet/Idle.png" id="4_6trwp"]
+[ext_resource type="Texture2D" uid="uid://cujgem1coef6x" path="res://Enemy/Demon Spritesheet/Walk.png" id="5_gmhcs"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_deuxj"]
+atlas = ExtResource("1_6d67g")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_akywh"]
+atlas = ExtResource("1_6d67g")
+region = Rect2(256, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u7l42"]
+atlas = ExtResource("1_6d67g")
+region = Rect2(512, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ed0l"]
+atlas = ExtResource("1_6d67g")
+region = Rect2(768, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvx3s"]
+atlas = ExtResource("2_j0fjl")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8gak4"]
+atlas = ExtResource("3_p4w5p")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4xnln"]
+atlas = ExtResource("3_p4w5p")
+region = Rect2(256, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wohls"]
+atlas = ExtResource("3_p4w5p")
+region = Rect2(512, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ay6r"]
+atlas = ExtResource("3_p4w5p")
+region = Rect2(768, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_otlvx"]
+atlas = ExtResource("3_p4w5p")
+region = Rect2(1024, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6mjfp"]
+atlas = ExtResource("3_p4w5p")
+region = Rect2(1280, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mfp2c"]
+atlas = ExtResource("4_6trwp")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v1yub"]
+atlas = ExtResource("4_6trwp")
+region = Rect2(256, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_br5jr"]
+atlas = ExtResource("4_6trwp")
+region = Rect2(512, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bfymp"]
+atlas = ExtResource("5_gmhcs")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q5nww"]
+atlas = ExtResource("5_gmhcs")
+region = Rect2(256, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wfor7"]
+atlas = ExtResource("5_gmhcs")
+region = Rect2(512, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pb7o7"]
+atlas = ExtResource("5_gmhcs")
+region = Rect2(768, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wc7ws"]
+atlas = ExtResource("5_gmhcs")
+region = Rect2(1024, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q66pr"]
+atlas = ExtResource("5_gmhcs")
+region = Rect2(1280, 0, 256, 256)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_761tt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_deuxj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_akywh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u7l42")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1ed0l")
+}],
+"loop": true,
+"name": &"Demon Attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvx3s")
+}],
+"loop": true,
+"name": &"Demon Damaged",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8gak4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4xnln")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wohls")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7ay6r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_otlvx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6mjfp")
+}],
+"loop": true,
+"name": &"Demon Death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mfp2c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v1yub")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_br5jr")
+}],
+"loop": true,
+"name": &"Demon Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bfymp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q5nww")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wfor7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pb7o7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wc7ws")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q66pr")
+}],
+"loop": true,
+"name": &"Demon Walk",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ev3hy"]
+size = Vector2(110, 107)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t3w3s"]
+size = Vector2(107, 102)
+
+[sub_resource type="Animation" id="Animation_mwp2t"]
+resource_name = "Attack"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"Demon Attack", 1.0, false],
+"method": &"play"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_jmp6h"]
+resource_name = "Damaged"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"Demon Damaged", 1.0, false],
+"method": &"play"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_mt8qa"]
+resource_name = "Idle"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"Demon Idle", 1.0, false],
+"method": &"play"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_ahqn1"]
+resource_name = "Dead"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"Demon Death", 1.0, false],
+"method": &"play"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_p4yjd"]
+resource_name = "Walk"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"Demon Walk", 1.0, false],
+"method": &"play"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vgsf8"]
+_data = {
+"Attack": SubResource("Animation_mwp2t"),
+"Damaged": SubResource("Animation_jmp6h"),
+"Dead": SubResource("Animation_ahqn1"),
+"Idle": SubResource("Animation_mt8qa"),
+"Walk": SubResource("Animation_p4yjd")
+}
+
+[node name="Demon" type="CharacterBody2D" groups=["Enemies"]]
+script = ExtResource("1_aufhr")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." groups=["Enemies"]]
+sprite_frames = SubResource("SpriteFrames_761tt")
+animation = &"Demon Walk"
+frame_progress = 0.0863688
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-24, 14)
+shape = SubResource("RectangleShape2D_ev3hy")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-24, 11)
+shape = SubResource("RectangleShape2D_t3w3s")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_vgsf8")
+}
